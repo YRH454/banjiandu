@@ -1,0 +1,7 @@
+# Preserve the exact historical source bytes, including line endings.
+experiments/** -text
+src/** -text
+third_party/ALBEF_LICENSE.txt -text
+
+# Upstream ALBEF files include trailing spaces; keep their upstream formatting.
+src/albef_ssl/vendor/albef/*.py -whitespace

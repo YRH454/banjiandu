@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "existing_training_seed": 20260825,
+  "additional_training_seeds": [20260826, 20260827],
+  "fixed_pair_construction_seed": 20260825,
+  "g1_g2_budget_order": ["005", "020", "001", "010", "030", "100"],
+  "g3_g4_budget_order": ["005", "020", "001", "010", "030"],
+  "variants": ["G1", "G2", "G3", "G4"],
+  "student_steps_per_stage": 1600,
+  "g2_g3_g4_initialization": "same_seed_corresponding_G1_best_weights_only",
+  "usa_teacher": "same_seed_per_budget_teacher_without_independent_B_student",
+  "validation": "fixed_400_image_random_mismatch_pairs",
+  "test_evaluation": false,
+  "status": "code_only_not_prepared_not_run"
+}

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "scope": "five_budget_G3_OT_and_G4_USA_OT_from_corresponding_A_best",
+  "authorization": "User approved the reviewed main plan with 开始吧; optional extra BCE continuation is not included.",
+  "budget_order": ["005", "020", "001", "010", "030"],
+  "variants": ["G3", "G4"],
+  "seed": 20260825,
+  "caption_protocol": "training_pool_blind_captions_available_matching_labels_masked_on_U",
+  "unlabeled_batch": 32,
+  "labeled_positive_anchors": 16,
+  "additional_steps": 1600,
+  "source_initialization": "corresponding_A_best_weights_only",
+  "usa_teacher": "reuse_corresponding_original_B_teacher",
+  "ot": {"epsilon": 0.1, "max_iterations": 100, "tolerance": 0.00001, "warmup_start": 100, "warmup_end": 200, "max_weight": 0.1, "solver_dtype": "float64", "cost_dtype": "float32", "residual": "both_marginals_same_final_plan"},
+  "u_weak": {"resize": 384, "interpolation": "bicubic", "normalization": "CLIP"},
+  "u_strong": {"resize": 384, "brightness": 0.1, "contrast": 0.1, "saturation": 0.0, "hue": 0.0, "crop": false, "flip": false, "normalization": "CLIP"},
+  "initial_physical_batch": 8,
+  "max_cpu_prefix_cache_gib": 48,
+  "test_evaluation": false,
+  "full_budget_ot": "not_applicable_U_empty",
+  "extra_BCE_continuation": false
+}

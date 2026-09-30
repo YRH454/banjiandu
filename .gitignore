@@ -1,0 +1,41 @@
+# Datasets and generated pairs/captions
+**/data/
+**/datasets/
+**/images/
+**/captions/
+*.csv
+*.tsv
+*.parquet
+*.arrow
+
+# Training outputs and model artifacts
+**/outputs/
+**/audit/
+**/audit_private/
+**/checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.npy
+*.npz
+*.jsonl
+*.log
+*.html
+
+# Local runtime state
+__pycache__/
+*.py[cod]
+.queue.lock
+*.tmp
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+.pytest_cache/
+
+# Local experiment copies and private notes
+seed_20260826/
+seed_20260827/
+local_config.json

@@ -1,0 +1,14 @@
+{
+  "variant": "C_A_best_then_BCE_PairUSA",
+  "parent_root": "G:/YRH/ALBEF_续跑/experiments/apple_itm_pairusa_random_v2",
+  "budget_order": ["005", "020", "001", "010", "030", "100"],
+  "additional_steps": 1600,
+  "start_after": "all_12_original_students_completed_and_parent_queue_lock_available",
+  "initialization": "corresponding_A_best_weights_only",
+  "optimizer": "fresh_AdamW_with_original_B_hyperparameters",
+  "learning_rate": "restart_original_80_step_warmup_and_1600_step_cosine",
+  "pairusa_schedule": "original_B_zero_through_100_ramp_to_0.1_at_200",
+  "sampling_step": "restart_phase_step_1_with_original_seed_and_fixed_pairs",
+  "teacher": "reuse_corresponding_completed_B_teacher_without_modification",
+  "test_evaluation": false
+}
