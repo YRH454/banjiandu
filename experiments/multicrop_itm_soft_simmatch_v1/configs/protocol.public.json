@@ -1,0 +1,131 @@
+{
+  "version": "pair_ssl_soft_sim_linux_v1",
+  "task": "binary_image_caption_matching",
+  "seed": 20260825,
+  "datasets": [
+    "apple",
+    "cassava",
+    "rice",
+    "banana"
+  ],
+  "budgets": [
+    "001",
+    "005",
+    "010",
+    "020",
+    "030"
+  ],
+  "targets": {
+    "softmatch": 2200,
+    "simmatch": 2400
+  },
+  "initialization": "official_ALBEF4M_plus_exact_34_key_common_initial_values;no_BCE_best_no_auxiliary_pretraining",
+  "legacy_common_tensor_sha256": "3dd177e33a5a7f2f3ac7e43dd8a28236bdc4d20118af3df1381a4752a98ace74",
+  "model": {
+    "image_size": 384,
+    "vision_lora_layers": [
+      10,
+      11
+    ],
+    "vision_lora_rank": 4,
+    "vision_lora_alpha": 8,
+    "cross_lora_layers": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cross_lora_rank": 8,
+    "cross_lora_alpha": 16,
+    "activation_checkpointing": true,
+    "use_pairusa": false
+  },
+  "training": {
+    "logical_l_anchors": 16,
+    "logical_l_pairs": 32,
+    "logical_u_pairs": 32,
+    "physical_pairs": 16,
+    "oom_physical_fallback": [
+      8,
+      4
+    ],
+    "warmup_steps": 80,
+    "lora_lr": 0.0001,
+    "head_lr": 0.0002,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1,
+    "checkpoint_every": 50,
+    "eval_every": 100,
+    "amp_initial_scale": 1024,
+    "ema_decay": 0.999,
+    "lambda_u": 1
+  },
+  "augmentation": {
+    "text": "complete_verbatim_blind_caption_unchanged",
+    "l_and_u_weak": "bicubic_square_resize384_then_seeded_horizontal_flip",
+    "u_strong": "same_weak_flip_then_RandAugment_2ops_magnitude10_and_Cutout_0.125;no_crop"
+  },
+  "softmatch": {
+    "ema_p": 0.999,
+    "n_sigma": 2,
+    "per_class": false,
+    "dist_uniform": true,
+    "hard_label": true,
+    "T": 0.5,
+    "Gaussian_init_mu": 0.5,
+    "Gaussian_init_var": 1,
+    "variance_min_numerical_guard": 1e-12,
+    "weighting_probs": "uniform_distribution_aligned_current_student_weak",
+    "pseudo_labels": "unaligned_current_student_weak_argmax",
+    "normalization": "all_32_U_pairs_not_selected_only"
+  },
+  "simmatch": {
+    "T": 0.5,
+    "p_cutoff": 0.95,
+    "proj_size": 128,
+    "smoothing_alpha": 0.9,
+    "da_len": 256,
+    "in_loss_ratio": 1,
+    "use_epass": false,
+    "teacher": "EMA_weak_logits_and_pair_features",
+    "memory_nodes": "all_labeled_pair_IDs_K_equals_2_times_L_anchors",
+    "projector": "768_to_768_ReLU_to128_L2_normalized",
+    "projector_seed_offset": 505,
+    "projector_lr": 0.0002,
+    "memory_initialization": "one_frozen_no_optimizer_pass_over_public_L_pairs;no_Validation_or_Test",
+    "instance_warmup_steps": "ceil_L_anchors_divided_by_16_within_2400_not_extra_updates",
+    "pair_memory_updates": "EMA_labeled_weak_features_after_each_successful_update_only",
+    "semantic_target": "0.9_DA_EMA_probability_plus_0.1_class_aggregated_weak_instance_similarity",
+    "instance_target": "weak_instance_similarity_reweighted_by_aligned_class_probability",
+    "semantic_loss": "soft_target_binary_CE_0.95_mask_all_U_mean",
+    "instance_loss": "unmasked_instance_distribution_CE_all_U_mean"
+  },
+  "evaluation": {
+    "split": "same_fixed_400_validation_images_800_pairs_only",
+    "model": "EMA_for_both_methods",
+    "threshold": "validation_only_max_macro_F1",
+    "best_criterion": "paired_accuracy_then_AUROC",
+    "no_test_inference": true
+  },
+  "fairness": {
+    "single_continuous_training": true,
+    "equal_compute": false,
+    "single_seed": true,
+    "bank_initialization_forward_cost_recorded": true,
+    "our_multistage_and_teacher_cost_must_be_reported": true,
+    "ITM_adaptation_not_exact_image_classification_reproduction": true
+  },
+  "reference": {
+    "usb_commit": "1ef4cbebcc0b368158315aeb425053858cf6c845",
+    "albef_commit": "b9727e43c3040491774d1b22cc27718aa7772fac",
+    "official_checkpoint_md5": "3c876d776a8e0ce61e2285fc9897f0b3",
+    "original_simmatch_repository": "currently_placeholder_README_not_used_as_algorithm_source"
+  },
+  "publication": {
+    "kind": "scientific_subset_not_launch_ready",
+    "private_deployment_and_runtime_bindings_omitted": true,
+    "historical_protocol_fingerprint_reusable": false
+  }
+}
