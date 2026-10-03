@@ -1,0 +1,193 @@
+{
+  "format": "public_source_archive_v1",
+  "snapshot_date": "2026-10-03",
+  "scope": "whitelisted source only; no results, private config, data or runtime receipts",
+  "core_reused_byte_identically_from": "src/albef_ssl",
+  "files": [
+    {
+      "original_relative_path": "audit/speedup_20261002/parallel_dispatcher.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/archive/speedup_20261002/parallel_dispatcher.py",
+      "sha256": "ce3bd1e4f5cd4ac7e1763ef4847842db06c3a5545178dba12abfcb14b52419d3"
+    },
+    {
+      "original_relative_path": "audit/speedup_20261002/perf_cache.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/archive/speedup_20261002/perf_cache.py",
+      "sha256": "5b2e761113823a2259d14090d565c92e6e67734292a9468d59f96c2fd7efe002"
+    },
+    {
+      "original_relative_path": "audit/speedup_20261002/performance_train.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/archive/speedup_20261002/performance_train.py",
+      "sha256": "4d1737289fd6f84c635f575ce955604627342c720a58c790a9ffadb0831c5ef1"
+    },
+    {
+      "original_relative_path": "audit/speedup_20261002/test_perf_cache.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/archive/speedup_20261002/test_perf_cache.py",
+      "sha256": "bd8a887cb95f3e382534c20866497de168e01a1ddb65d9947b8620192897e032"
+    },
+    {
+      "original_relative_path": "code/base_train.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/base_train.py",
+      "sha256": "3179f487a81312d281360f35a41fbdd00b5dbda9ac40d4445bbabd0216d02afb"
+    },
+    {
+      "original_relative_path": "code/common.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/common.py",
+      "sha256": "475fa49b19d61904748f29981420a6f7be7fa23fd1254ec6916ec87efab8a843"
+    },
+    {
+      "original_relative_path": "code/data_backend.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/data_backend.py",
+      "sha256": "91f4c24ee690e8cdc0834414c09cf81cab3801d29dd4ffa21ff7f7ab3ff3003d"
+    },
+    {
+      "original_relative_path": "code/dispatcher.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/dispatcher.py",
+      "sha256": "a4cbe817ecac4e9a345be5151028dbc0e80696500acf3f85698297005d27a08a"
+    },
+    {
+      "original_relative_path": "code/losses.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/losses.py",
+      "sha256": "f3fc4f70242fd55a68cb495005906b4fe3fc8c9baf01b1c8def2cdbdcba254b4"
+    },
+    {
+      "original_relative_path": "code/make_configs.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/make_configs.py",
+      "sha256": "5635c447b70d329c1030af2fd998d0bc82b0451712407cf46284c9c4a4f5a51d"
+    },
+    {
+      "original_relative_path": "code/metrics.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/metrics.py",
+      "sha256": "f4e76605bdff1e11e893f75d2a617e2a0524bc62204abc729d8ccaade97cc1d6"
+    },
+    {
+      "original_relative_path": "code/pair_model.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/pair_model.py",
+      "sha256": "1d6920026340dbc367d0ae8f3b1f225749f97968140d99b58e3c8ab312b1eb6f"
+    },
+    {
+      "original_relative_path": "code/preflight.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/preflight.py",
+      "sha256": "aad92b13f7d5343e3b7dfde2cbe79d27dca871ade1f78e8bd2a1f666bd62d6e1"
+    },
+    {
+      "original_relative_path": "code/ssl_algorithms.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/ssl_algorithms.py",
+      "sha256": "7e454ec646a8498a7341b1f04c4690641ed3de7edde7844308012850743aa9b8"
+    },
+    {
+      "original_relative_path": "code/train.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/train.py",
+      "sha256": "1d7bcc4d94986f3cd5fa711ca30624ab8ef665a72d90e5d7e027435ba1deb016"
+    },
+    {
+      "original_relative_path": "code/unit_tests.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/code/unit_tests.py",
+      "sha256": "dac3abd645c099a972b4b2cec5e63afac2d665825fbe4fff8195f8ec12ebbabe"
+    },
+    {
+      "original_relative_path": "configs/requirements.txt",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/configs/requirements.txt",
+      "sha256": "212876e3be2307ffb4f2f568dd04d0ebbe4ee47025aa28d9920f7301e8e63a3e"
+    },
+    {
+      "original_relative_path": "core/albef_ssl/__init__.py",
+      "repository_path": "src/albef_ssl/__init__.py",
+      "sha256": "08452b851d6b71cc9451b8221534d857ce1cb3fbb18435d5c1b413d30d25a64c"
+    },
+    {
+      "original_relative_path": "core/albef_ssl/model.py",
+      "repository_path": "src/albef_ssl/model.py",
+      "sha256": "2f1784897dc4d94b12102bffb8c51537754f3f7c8e67c210d6d99ef98665b74b"
+    },
+    {
+      "original_relative_path": "core/albef_ssl/vendor/__init__.py",
+      "repository_path": "src/albef_ssl/vendor/__init__.py",
+      "sha256": "e0b1753d01681a09550c0f5f3f2c109ff9dd64a48ac0e0705236bf832ed515ec"
+    },
+    {
+      "original_relative_path": "core/albef_ssl/vendor/albef/__init__.py",
+      "repository_path": "src/albef_ssl/vendor/albef/__init__.py",
+      "sha256": "5e296332b4bbc779058d1ca3e5633abc89f9ccf1be579ca474895385edd6ef51"
+    },
+    {
+      "original_relative_path": "core/albef_ssl/vendor/albef/bert_config.json",
+      "repository_path": "src/albef_ssl/vendor/albef/bert_config.json",
+      "sha256": "e20759eceda36082f9880ead487083abdd55de7d2161a0fcec3683570a4235f5"
+    },
+    {
+      "original_relative_path": "core/albef_ssl/vendor/albef/vit.py",
+      "repository_path": "src/albef_ssl/vendor/albef/vit.py",
+      "sha256": "4ae33b200e2c3f74e5652cd5db57081474742293065d97d4297afd0aefa03ad2"
+    },
+    {
+      "original_relative_path": "core/albef_ssl/vendor/albef/xbert.py",
+      "repository_path": "src/albef_ssl/vendor/albef/xbert.py",
+      "sha256": "4efddc12b925d4b76c8a033a89c497ce2644d781a2cc88d5c9d7bdcef11135f1"
+    },
+    {
+      "original_relative_path": "references/usb/hooks/dist_align.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/references/usb/hooks/dist_align.py",
+      "sha256": "01a83851608f1b714fc29c790496c818d691aeba9d776a94b0777c1f55a03fb4",
+      "original_sha256": "5086992e50c556bbabef02dd59330ce50faeeb6b69612b387622ddf48b006c20",
+      "normalization": "CRLF to LF and terminal newline; reference-only, not runtime-imported"
+    },
+    {
+      "original_relative_path": "references/usb/LICENSE.txt",
+      "repository_path": "third_party/USB_LICENSE.txt",
+      "sha256": "85ce7eda4c1d04cba58e5d9852703b1d978b31c196334bd5fa4dbf146136f285",
+      "original_sha256": "a3811d3c0fee5a2b7c460c7089f8e19f2b9f123ced30f9e805a440b6f533e0dc",
+      "normalization": "CRLF to LF and terminal newline; reference-only, not runtime-imported"
+    },
+    {
+      "original_relative_path": "references/usb/simmatch/__init__.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/references/usb/simmatch/__init__.py",
+      "sha256": "2acd231e35af08afea7139de6ad03a7519aa29e3f68b8d5adcadd21d4142056c",
+      "original_sha256": "7aa4d07135679d2a3b6f09871323e8969396b3b77791c6be0784bc329e1f0db2",
+      "normalization": "CRLF to LF and terminal newline; reference-only, not runtime-imported"
+    },
+    {
+      "original_relative_path": "references/usb/simmatch/simmatch.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/references/usb/simmatch/simmatch.py",
+      "sha256": "df70446a11d7e2ea54aa55ea0f431a3beb6cdc609984a7b9425b0cbc4c3f5ef7",
+      "original_sha256": "e22e352cc69329397e32b44366b5df9fe90f2c8b1ff9f54246865b8990feb740",
+      "normalization": "CRLF to LF and terminal newline; reference-only, not runtime-imported"
+    },
+    {
+      "original_relative_path": "references/usb/softmatch/__init__.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/references/usb/softmatch/__init__.py",
+      "sha256": "143335ffddf5a13868318ba651932996d9eec30a5b288fcddcd367a5e7a60c8a",
+      "original_sha256": "1d3f394bb4f2bbeb71d02624775355e75759758927868a58830495f35b6e63fc",
+      "normalization": "CRLF to LF and terminal newline; reference-only, not runtime-imported"
+    },
+    {
+      "original_relative_path": "references/usb/softmatch/softmatch.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/references/usb/softmatch/softmatch.py",
+      "sha256": "52695867c2760386cadaeb58d110df2a29c5130a22c02eb1ff86120ceb08d46c",
+      "original_sha256": "6a396bbd8110d6399822be554ffdee3ab94229b04c0e624be09ff95a92c1ec6b",
+      "normalization": "CRLF to LF and terminal newline; reference-only, not runtime-imported"
+    },
+    {
+      "original_relative_path": "references/usb/softmatch/utils.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/references/usb/softmatch/utils.py",
+      "sha256": "03d0dfc0ff744b45b797ebfe8756265a1fc2aa790e7b4989f86117098a760850",
+      "original_sha256": "b9689c459841ac360a7e140304d6fe4cc498f3cb5c29749e15fb4c884730afd7",
+      "normalization": "CRLF to LF and terminal newline; reference-only, not runtime-imported"
+    },
+    {
+      "original_relative_path": "verification/export_common_initialization.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/verification/export_common_initialization.py",
+      "sha256": "b5f5dc1ba7c9f427236746d90d8cfb6287bf53f7f22deee0410e957055d8ed78"
+    },
+    {
+      "original_relative_path": "verification/verify_running.py",
+      "repository_path": "experiments/multicrop_itm_soft_simmatch_v1/verification/verify_running.py",
+      "sha256": "8d86df6bdea599e3286e715fa1146f5b535b5dabc14cd25b907a7e6d3a4d6134"
+    }
+  ],
+  "excluded_source_helpers": [
+    "code/bundle.py",
+    "audit/speedup_20261002/benchmark_speed.py",
+    "audit/speedup_20261002/monitor_snapshot.py"
+  ],
+  "historical_checkpoint_resume_supported_by_this_public_archive": false
+}

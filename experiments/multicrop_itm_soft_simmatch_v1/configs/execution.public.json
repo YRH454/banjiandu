@@ -1,0 +1,26 @@
+{
+  "version": "gpu_parallel_perf_20261002_v1",
+  "kind": "public_description_not_an_accepted_policy_receipt",
+  "maximum_gpu_workers": 2,
+  "method_lanes": {
+    "softmatch": 20,
+    "simmatch": 20
+  },
+  "group_within_each_method_serial": true,
+  "historical_mixed_execution_versions": true,
+  "options": {
+    "name": "parallel_no_recompute",
+    "activation_checkpointing": false,
+    "decode_workers": 8,
+    "physical_pairs": 16,
+    "prefix_batch": 4
+  },
+  "cpu_feature_cache_bytes": {
+    "image": 8589934592,
+    "text": 1073741824
+  },
+  "decoded_capacity": 1024,
+  "scientific_inputs_logical_batches_seed_and_targets_unchanged": true,
+  "larger_batch_accepted": false,
+  "new_gpu_replay_and_equivalence_gate_required_for_new_deployments": true
+}

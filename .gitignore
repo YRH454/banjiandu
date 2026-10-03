@@ -39,3 +39,23 @@ venv/
 seed_20260826/
 seed_20260827/
 local_config.json
+
+# Private assembled workspace for the multicrop source archive
+experiments/multicrop_itm_soft_simmatch_v1/assets/
+experiments/multicrop_itm_soft_simmatch_v1/core/
+experiments/multicrop_itm_soft_simmatch_v1/configs/runs/
+experiments/multicrop_itm_soft_simmatch_v1/configs/protocol.json
+experiments/multicrop_itm_soft_simmatch_v1/configs/queue.json
+experiments/multicrop_itm_soft_simmatch_v1/reports/
+experiments/multicrop_itm_soft_simmatch_v1/archive/speedup_20261002/*.json
+experiments/multicrop_itm_soft_simmatch_v1/archive/speedup_20261002/bench*/
+**/runtime/
+**/pip-cache/
+**/locks/
+**/status.json
+**/result.json
+**/summary.json
+**/predictions_*.json
+*.tar
+*.tar.gz
+*.zip

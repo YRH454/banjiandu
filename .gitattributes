@@ -5,3 +5,16 @@ third_party/ALBEF_LICENSE.txt -text
 
 # Upstream ALBEF files include trailing spaces; keep their upstream formatting.
 src/albef_ssl/vendor/albef/*.py -whitespace
+
+# Preserve the registered LF bytes of the new source archive on Windows too.
+experiments/multicrop_itm_soft_simmatch_v1/** text eol=lf
+tools/render_result_report.py text eol=lf
+tools/verify_source_archive.py text eol=lf
+tests/test_multicrop_public.py text eol=lf
+third_party/USB_LICENSE.txt text eol=lf
+
+# Keep reference-only upstream formatting apart from the documented LF normalization.
+experiments/multicrop_itm_soft_simmatch_v1/references/usb/**/*.py -whitespace
+
+# This registered runtime source deliberately retains its original final blank line.
+experiments/multicrop_itm_soft_simmatch_v1/archive/speedup_20261002/perf_cache.py whitespace=-blank-at-eof

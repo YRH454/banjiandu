@@ -9,3 +9,5 @@
 若需重建历史数据，应先取得数据和 caption 的授权副本，再按原登记和构造脚本核验划分、文件 SHA256 与行数。重新调用 caption 生成模型无法保证得到旧文本；重新生成随机配对也不能冒充原冻结输入。历史配置中的绝对路径只是原机器位置，不是公开下载地址。
 
 基础权重为 ALBEF_4M.pth；历史登记 MD5 `3c876d776a8e0ce61e2285fc9897f0b3`。BERT tokenizer 使用 `bert-base-uncased` 的 revision `86b5e0934494bd15c9632b12f734a8a67f723594`。二者均不随仓库发布。学生 `best.pt` 只含可训练键，不能单独替代基础权重。
+
+上述样本池和六预算数量属于历史苹果G1–G4，不能套用到新增四作物SoftMatch/SimMatch。后者五预算和数据接口详见[对应归档](../experiments/multicrop_itm_soft_simmatch_v1/README.md)：数据集manifest、asset index和固定L/U/Validation表保持私有，U接口禁止隐藏来源标签。其初始化张量、运行回执、逐组配置和结果同样不分发。
