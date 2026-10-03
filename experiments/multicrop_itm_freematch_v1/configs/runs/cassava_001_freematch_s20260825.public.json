@@ -1,0 +1,85 @@
+{
+  "run_id": "cassava_001_freematch_s20260825",
+  "dataset": "cassava",
+  "budget": "001",
+  "method": "freematch",
+  "seed": 20260825,
+  "target_steps": 2600,
+  "model": {
+    "image_size": 384,
+    "vision_lora_layers": [
+      10,
+      11
+    ],
+    "vision_lora_rank": 4,
+    "vision_lora_alpha": 8,
+    "cross_lora_layers": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cross_lora_rank": 8,
+    "cross_lora_alpha": 16,
+    "activation_checkpointing": true,
+    "use_pairusa": false
+  },
+  "training": {
+    "logical_l_anchors": 16,
+    "logical_l_pairs": 32,
+    "logical_u_pairs": 32,
+    "physical_pairs": 16,
+    "oom_physical_fallback": [
+      8,
+      4
+    ],
+    "warmup_steps": 80,
+    "lora_lr": 0.0001,
+    "head_lr": 0.0002,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1,
+    "checkpoint_every": 50,
+    "eval_every": 100,
+    "amp_initial_scale": 1024,
+    "ema_decay": 0.999,
+    "lambda_u": 1
+  },
+  "method_settings": {
+    "ema_p": 0.999,
+    "ent_loss_ratio": 0.01,
+    "hard_label": true,
+    "T": 0.5,
+    "use_quantile": false,
+    "clip_thresh": false,
+    "normalization": "mean_over_all_32_U_not_selected_only",
+    "SAT": "ICLR2023_Eq5_6_7_current_student_weak_detached",
+    "SAF": "Eq9_10_11_and_pinned_USB_global_selected32_histogram_modulation_negative_cross_entropy",
+    "statistics_commit": "exactly_once_only_after_successful_optimizer_update",
+    "extra_strong_forward": "deterministic_two_pass_global_SAF_gradient_with_bitwise_physical_replay_logit_check"
+  },
+  "evaluation": {
+    "split": "400_fixed_validation_images_800_pairs_only",
+    "model": "EMA_for_FreeMatch",
+    "threshold": "validation_only_max_macro_F1",
+    "best_criterion": "ranking_accuracy_then_AUROC_tie_same_as_existing_BCE",
+    "no_test_inference": true
+  },
+  "augmentation": {
+    "text": "complete_verbatim_blind_caption_unchanged",
+    "l_and_u_weak": "bicubic_square_resize384_then_seeded_horizontal_flip",
+    "u_strong": "same_weak_flip_then_RandAugment_2ops_magnitude10_and_Cutout_0.125;no_crop",
+    "note": "ITM-specific conservative image-only adaptation; not exact original image-classification benchmarks"
+  },
+  "initialization": "official_ALBEF_4M_and_common_34_key_LoRA_scalar_ITM_init_not_BCE_best",
+  "publication": {
+    "kind": "deidentified_scientific_config_view_not_launch_ready",
+    "historical_fingerprint_reusable": false,
+    "private_runtime_inputs_and_checkpoint_bindings_omitted": true,
+    "omitted_fields": [
+      "protocol_sha256",
+      "launch_enabled"
+    ]
+  }
+}

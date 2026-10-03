@@ -1,0 +1,78 @@
+{
+  "run_id": "rice_010_meanteacher_s20260825",
+  "dataset": "rice",
+  "budget": "010",
+  "method": "meanteacher",
+  "seed": 20260825,
+  "target_steps": 1800,
+  "model": {
+    "image_size": 384,
+    "vision_lora_layers": [
+      10,
+      11
+    ],
+    "vision_lora_rank": 4,
+    "vision_lora_alpha": 8,
+    "cross_lora_layers": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cross_lora_rank": 8,
+    "cross_lora_alpha": 16,
+    "activation_checkpointing": true,
+    "use_pairusa": false
+  },
+  "training": {
+    "logical_l_anchors": 16,
+    "logical_l_pairs": 32,
+    "logical_u_pairs": 32,
+    "physical_pairs": 16,
+    "oom_physical_fallback": [
+      8,
+      4
+    ],
+    "warmup_steps": 80,
+    "lora_lr": 0.0001,
+    "head_lr": 0.0002,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "checkpoint_every": 50,
+    "eval_every": 100,
+    "amp_initial_scale": 1024,
+    "ema_decay": 0.999,
+    "lambda_u": 1.0
+  },
+  "method_settings": {
+    "unsup_warm_up": 0.4,
+    "loss": "mean_over_32_pairs_binary_probability_MSE",
+    "teacher": "EMA_model_weak_view",
+    "student": "current_model_strong_view"
+  },
+  "evaluation": {
+    "split": "400_fixed_validation_images_800_pairs_only",
+    "model": "EMA_for_both_first_methods",
+    "threshold": "validation_only_max_macro_F1",
+    "best_criterion": "ranking_accuracy_then_AUROC_tie_same_as_existing_BCE",
+    "no_test_inference": true
+  },
+  "augmentation": {
+    "text": "complete_verbatim_blind_caption_unchanged",
+    "l_and_u_weak": "bicubic_square_resize384_then_seeded_horizontal_flip",
+    "u_strong": "same_weak_flip_then_RandAugment_2ops_magnitude10_and_Cutout_0.125;no_crop",
+    "note": "ITM-specific conservative image-only adaptation; not exact original image-classification benchmarks"
+  },
+  "initialization": "official_ALBEF_4M_and_common_34_key_LoRA_scalar_ITM_init_not_BCE_best",
+  "publication": {
+    "kind": "deidentified_scientific_config_view_not_launch_ready",
+    "historical_fingerprint_reusable": false,
+    "private_runtime_inputs_and_checkpoint_bindings_omitted": true,
+    "omitted_fields": [
+      "protocol_sha256",
+      "launch_enabled"
+    ]
+  }
+}

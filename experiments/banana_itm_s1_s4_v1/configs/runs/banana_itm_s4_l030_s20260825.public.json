@@ -1,0 +1,107 @@
+{
+  "budget": "030",
+  "caption_protocol": "training_pool_blind_captions_available_matching_labels_masked_on_U",
+  "max_cpu_prefix_cache_gib": 48,
+  "model": {
+    "activation_checkpointing": true,
+    "checkpoint_md5_expected": "3c876d776a8e0ce61e2285fc9897f0b3",
+    "cross_lora_alpha": 16,
+    "cross_lora_layers": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cross_lora_rank": 8,
+    "fusion_chunk_size": 16,
+    "image_size": 384,
+    "initial_student_temperature": 0.07,
+    "max_text_length": 384,
+    "seed": 20260825,
+    "use_pairusa": true,
+    "vision_lora_alpha": 8,
+    "vision_lora_layers": [
+      10,
+      11
+    ],
+    "vision_lora_rank": 4
+  },
+  "ot": {
+    "cost_dtype": "float32",
+    "epsilon": 0.1,
+    "max_iterations": 100,
+    "max_weight": 0.1,
+    "residual": "both_marginals_same_final_plan",
+    "solver_dtype": "float64",
+    "tolerance": 0.0001,
+    "warmup_end": 200,
+    "warmup_start": 100
+  },
+  "run_id": "banana_itm_s4_l030_s20260825",
+  "seed": 20260825,
+  "speed_profile": "cassava_formal_fast_v1_inherited_all_budgets",
+  "stage": "S4",
+  "test_evaluation": false,
+  "training": {
+    "checkpoint_every": 50,
+    "eval_every": 100,
+    "head_lr": 0.0002,
+    "logical_positive_batch": 16,
+    "lora_lr": 0.0001,
+    "max_grad_norm": 1.0,
+    "max_steps": 1600,
+    "pairusa_lambda": 0.1,
+    "pairusa_ramp_end": 200,
+    "pairusa_start": 100,
+    "pairusa_student_temp_init": 0.07,
+    "pairusa_teacher_temp": 1.0,
+    "physical_positive_batch": 16,
+    "teacher_batch": 16,
+    "teacher_lr": 0.0002,
+    "teacher_max_epochs": 20,
+    "teacher_patience": 3,
+    "warmup_steps": 80,
+    "weight_decay": 0.01
+  },
+  "u_n_images": 3360,
+  "u_n_pairs": 6720,
+  "u_strong": {
+    "brightness": 0.1,
+    "contrast": 0.1,
+    "crop": false,
+    "flip": false,
+    "hue": 0.0,
+    "normalization": "CLIP",
+    "resize": 384,
+    "saturation": 0.0
+  },
+  "u_weak": {
+    "interpolation": "bicubic",
+    "normalization": "CLIP",
+    "resize": 384
+  },
+  "unlabeled_batch": 32,
+  "variant": "G4",
+  "warmstart": {
+    "parent_kind": "S3",
+    "parent_run_id": "banana_itm_s3_l030_s20260825"
+  },
+  "publication": {
+    "kind": "deidentified_scientific_config_view_not_launch_ready",
+    "historical_fingerprint_reusable": false,
+    "private_runtime_inputs_and_checkpoint_bindings_omitted": true,
+    "omitted_fields": [
+      "image_root",
+      "pair_file",
+      "u_file",
+      "u_sha256",
+      "validation_file",
+      "recovery_schema",
+      "model.checkpoint",
+      "model.tokenizer_path",
+      "warmstart.private_artifact_and_measurement_bindings"
+    ]
+  }
+}

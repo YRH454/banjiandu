@@ -1,0 +1,112 @@
+{
+  "version": "pair_ssl_fifth_freematch_v1",
+  "task": "binary_image_caption_matching",
+  "seed": 20260825,
+  "datasets": [
+    "apple",
+    "cassava",
+    "rice",
+    "banana"
+  ],
+  "budgets": [
+    "001",
+    "005",
+    "010",
+    "020",
+    "030"
+  ],
+  "targets": {
+    "freematch": 2600
+  },
+  "initialization": "official_ALBEF_4M_and_common_34_key_LoRA_scalar_ITM_init_not_BCE_best",
+  "model": {
+    "image_size": 384,
+    "vision_lora_layers": [
+      10,
+      11
+    ],
+    "vision_lora_rank": 4,
+    "vision_lora_alpha": 8,
+    "cross_lora_layers": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cross_lora_rank": 8,
+    "cross_lora_alpha": 16,
+    "activation_checkpointing": true,
+    "use_pairusa": false
+  },
+  "training": {
+    "logical_l_anchors": 16,
+    "logical_l_pairs": 32,
+    "logical_u_pairs": 32,
+    "physical_pairs": 16,
+    "oom_physical_fallback": [
+      8,
+      4
+    ],
+    "warmup_steps": 80,
+    "lora_lr": 0.0001,
+    "head_lr": 0.0002,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1,
+    "checkpoint_every": 50,
+    "eval_every": 100,
+    "amp_initial_scale": 1024,
+    "ema_decay": 0.999,
+    "lambda_u": 1
+  },
+  "augmentation": {
+    "text": "complete_verbatim_blind_caption_unchanged",
+    "l_and_u_weak": "bicubic_square_resize384_then_seeded_horizontal_flip",
+    "u_strong": "same_weak_flip_then_RandAugment_2ops_magnitude10_and_Cutout_0.125;no_crop",
+    "note": "ITM-specific conservative image-only adaptation; not exact original image-classification benchmarks"
+  },
+  "evaluation": {
+    "split": "400_fixed_validation_images_800_pairs_only",
+    "model": "EMA_for_FreeMatch",
+    "threshold": "validation_only_max_macro_F1",
+    "best_criterion": "ranking_accuracy_then_AUROC_tie_same_as_existing_BCE",
+    "no_test_inference": true
+  },
+  "fairness": {
+    "equal_successful_updates": false,
+    "equal_compute": false,
+    "single_continuous_run_per_method": true,
+    "single_seed_not_significance_test": true,
+    "our_multistage_lineage_and_teacher_compute_must_be_reported": true
+  },
+  "reference": {
+    "usb_commit": "1ef4cbebcc0b368158315aeb425053858cf6c845",
+    "albef_commit": "b9727e43c3040491774d1b22cc27718aa7772fac",
+    "checkpoint_md5": "3c876d776a8e0ce61e2285fc9897f0b3",
+    "freematch": {
+      "paper": "https://arxiv.org/html/2205.07246v3",
+      "title": "FreeMatch: Self-adaptive Thresholding for Semi-supervised Learning",
+      "venue": "ICLR2023",
+      "upstream_commit": "1ef4cbebcc0b368158315aeb425053858cf6c845"
+    }
+  },
+  "freematch": {
+    "ema_p": 0.999,
+    "ent_loss_ratio": 0.01,
+    "hard_label": true,
+    "T": 0.5,
+    "use_quantile": false,
+    "clip_thresh": false,
+    "normalization": "mean_over_all_32_U_not_selected_only",
+    "SAT": "ICLR2023_Eq5_6_7_current_student_weak_detached",
+    "SAF": "Eq9_10_11_and_pinned_USB_global_selected32_histogram_modulation_negative_cross_entropy",
+    "statistics_commit": "exactly_once_only_after_successful_optimizer_update",
+    "extra_strong_forward": "deterministic_two_pass_global_SAF_gradient_with_bitwise_physical_replay_logit_check"
+  },
+  "publication": {
+    "kind": "deidentified_scientific_config_view_not_launch_ready",
+    "historical_fingerprint_reusable": false,
+    "private_runtime_inputs_and_checkpoint_bindings_omitted": true
+  }
+}

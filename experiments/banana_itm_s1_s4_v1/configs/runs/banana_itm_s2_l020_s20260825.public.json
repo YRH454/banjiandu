@@ -1,0 +1,78 @@
+{
+  "budget": "020",
+  "method": "B_bce_pairusa_warmstart_S1_best",
+  "model": {
+    "activation_checkpointing": true,
+    "checkpoint_md5_expected": "3c876d776a8e0ce61e2285fc9897f0b3",
+    "cross_lora_alpha": 16,
+    "cross_lora_layers": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cross_lora_rank": 8,
+    "fusion_chunk_size": 16,
+    "image_size": 384,
+    "initial_student_temperature": 0.07,
+    "max_text_length": 384,
+    "seed": 20260825,
+    "use_pairusa": true,
+    "vision_lora_alpha": 8,
+    "vision_lora_layers": [
+      10,
+      11
+    ],
+    "vision_lora_rank": 4,
+    "warmstart": {
+      "parent_kind": "S1",
+      "parent_run_id": "banana_itm_s1_l020_s20260825"
+    }
+  },
+  "run_id": "banana_itm_s2_l020_s20260825",
+  "seed": 20260825,
+  "speed_profile": "cassava_formal_fast_v1_inherited_all_budgets",
+  "stage": "S2",
+  "training": {
+    "checkpoint_every": 50,
+    "eval_every": 100,
+    "head_lr": 0.0002,
+    "logical_positive_batch": 16,
+    "lora_lr": 0.0001,
+    "max_grad_norm": 1.0,
+    "max_steps": 1600,
+    "pairusa_lambda": 0.1,
+    "pairusa_ramp_end": 200,
+    "pairusa_start": 100,
+    "pairusa_student_temp_init": 0.07,
+    "pairusa_teacher_temp": 1.0,
+    "physical_positive_batch": 16,
+    "teacher_batch": 16,
+    "teacher_lr": 0.0002,
+    "teacher_max_epochs": 20,
+    "teacher_patience": 3,
+    "warmup_steps": 80,
+    "weight_decay": 0.01
+  },
+  "warmstart": {
+    "parent_kind": "S1",
+    "parent_run_id": "banana_itm_s1_l020_s20260825"
+  },
+  "publication": {
+    "kind": "deidentified_scientific_config_view_not_launch_ready",
+    "historical_fingerprint_reusable": false,
+    "private_runtime_inputs_and_checkpoint_bindings_omitted": true,
+    "omitted_fields": [
+      "image_root",
+      "pair_file",
+      "validation_file",
+      "recovery_schema",
+      "model.checkpoint",
+      "model.tokenizer_path",
+      "model.warmstart.private_artifact_and_measurement_bindings",
+      "warmstart.private_artifact_and_measurement_bindings"
+    ]
+  }
+}

@@ -8,6 +8,19 @@ src/albef_ssl/vendor/albef/*.py -whitespace
 
 # Preserve the registered LF bytes of the new source archive on Windows too.
 experiments/multicrop_itm_soft_simmatch_v1/** text eol=lf
+experiments/cassava_itm_g1_g4_v1/** text eol=lf
+experiments/rice_itm_s1_s4_v1/** text eol=lf
+experiments/banana_itm_s1_s4_v1/** text eol=lf
+experiments/multicrop_itm_mt_fixmatch_v1/** text eol=lf
+experiments/multicrop_itm_freematch_v1/** text eol=lf
+docs/*20261004*.json text eol=lf
+docs/THREE_HOST_EXPERIMENTS_20261004.md text eol=lf
+tools/find_experiment_config.py text eol=lf
+tests/test_three_host_public.py text eol=lf
+third_party/APACHE_LICENSE_2_0.txt text eol=lf
+experiments/multicrop_itm_mt_fixmatch_v1/core/albef_ssl/vendor/albef/*.py -whitespace
+experiments/multicrop_itm_freematch_v1/core/albef_ssl/vendor/albef/*.py -whitespace
+experiments/multicrop_itm_freematch_v1/references/usb/**/*.py -whitespace
 tools/render_result_report.py text eol=lf
 tools/verify_source_archive.py text eol=lf
 tests/test_multicrop_public.py text eol=lf

@@ -1,0 +1,81 @@
+{
+  "activation_checkpointing": true,
+  "amp_dtype": "float16",
+  "budget_order": [
+    "005",
+    "020",
+    "001",
+    "010",
+    "030",
+    "100"
+  ],
+  "caption_field": "blind",
+  "dataset": "rice",
+  "dataset_adaptations": [
+    "group-aware split; quarantine480; full-text guard400"
+  ],
+  "experimental_speed_candidates_deployed": false,
+  "fusion_physical_microbatch": 16,
+  "initial_loss_scale": 1024,
+  "l_counts": {
+    "001": 78,
+    "005": 394,
+    "010": 788,
+    "020": 1576,
+    "030": 2364,
+    "100": 7881
+  },
+  "lineage": {
+    "S1": "ALBEF_4M",
+    "S2": "same_budget_S1_best",
+    "S3": "same_budget_S1_best",
+    "S4": "same_budget_S3_best"
+  },
+  "logical_labeled_positive_anchors": 16,
+  "logical_unlabeled_pairs": 32,
+  "max_text_tokens_including_special_tokens": 400,
+  "negative_policy": "random_other_case_full_blind_caption_rice_v1",
+  "non_leaf_policy": "retain_and_tag",
+  "oom_microbatch_backoff": [
+    16,
+    8,
+    4
+  ],
+  "ot_epsilon": 0.1,
+  "ot_full_budget": "not_applicable_U_empty",
+  "ot_max_iterations": 100,
+  "ot_tolerance": 0.0001,
+  "predecessor_kind": "cassava",
+  "recoverable_engineering_changes": [
+    "full-state S1/S2 checkpoint/RNG/best rollback",
+    "same-step physical OOM16->8->4",
+    "Windows replace retries inherited from cassava"
+  ],
+  "runtime_wrapper": "crop_queue.py",
+  "source_repo": "hf://buckets/EGOISTyrh/shuidaobanjiandu",
+  "source_revision": "bucket_snapshot_sha256:27092e287cedf895232ea388209cbbcd97d6dc648eede8fd6e5ee3aea346796b",
+  "speed_profile": "cassava_formal_fast_v1_inherited_all_budgets",
+  "split_counts": {
+    "test": 986,
+    "train": 7881,
+    "validation": 986
+  },
+  "split_seed": 20261001,
+  "student_stages": 22,
+  "student_steps_per_stage": 1600,
+  "test_evaluation": false,
+  "training_seed": 20260825,
+  "validation_anchors": 400,
+  "variants": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ],
+  "publication": {
+    "kind": "deidentified_scientific_config_view_not_launch_ready",
+    "historical_fingerprint_reusable": false,
+    "private_runtime_inputs_and_checkpoint_bindings_omitted": true
+  },
+  "completion_state_is_not_encoded_in_this_definition": true
+}

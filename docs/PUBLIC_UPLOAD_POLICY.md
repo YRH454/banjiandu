@@ -10,7 +10,7 @@
 | 上游参考代码、许可、源码SHA256 | 保留来源与许可，标明换行规范化/目录映射 |
 | 图片、caption、固定配对/划分表、样本ID、U隐藏标签 | 不上传 |
 | 权重、step-zero初始化张量、teacher/记忆向量、checkpoint、tokenizer资产 | 不上传 |
-| 40份运行配置、模型/数据资产回执、审计JSON、benchmark原始制品 | 不上传 |
+| 原始运行配置、模型/数据资产回执、审计JSON、benchmark原始制品 | 不上传；2026-10-04授权新增126份去部署化科学配置视图，独立标记public且不复用原运行fingerprint |
 | result/status/summary、逐样本预测、训练JSONL、日志、HTML/CSV结果 | 不上传 |
 | SSH凭据、端点、GPU UUID、环境秘密、进程状态、缓存、安装运行时 | 不上传 |
 

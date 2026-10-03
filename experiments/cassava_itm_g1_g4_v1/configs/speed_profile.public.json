@@ -1,0 +1,31 @@
+{
+  "profile": "post_5pct_fast_v1",
+  "applies_to_budgets": [
+    "020",
+    "001",
+    "010",
+    "030",
+    "100"
+  ],
+  "preserved_completed_budget": "005",
+  "training_seed": 20260825,
+  "fusion_physical_microbatch": 16,
+  "oom_microbatch_backoff": [
+    16,
+    8,
+    4
+  ],
+  "logical_labeled_positive_anchors": 16,
+  "logical_unlabeled_pairs": 32,
+  "amp_dtype": "float16",
+  "ot_tolerance": 0.0001,
+  "ot_epsilon": 0.1,
+  "ot_max_iterations": 100,
+  "student_steps_per_stage": 1600,
+  "note": "Only future runs use this versioned numerical and physical-batching profile. The original 5% stages remain untouched.",
+  "publication": {
+    "kind": "deidentified_scientific_config_view_not_launch_ready",
+    "historical_fingerprint_reusable": false,
+    "private_runtime_inputs_and_checkpoint_bindings_omitted": true
+  }
+}

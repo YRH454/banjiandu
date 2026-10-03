@@ -1,0 +1,2191 @@
+{
+  "format": "public_source_archive_v1",
+  "recorded_utc": "2026-10-03T18:32:56.586004+00:00",
+  "export_kind": "LF_and_deidentified_public_views_not_original_execution_fingerprints",
+  "shared_Windows_local_main_science_and_40_configs_matched": true,
+  "files": [
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/pair_model.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/pair_model.py",
+      "original_sha256": "50c299a3bc3749da3dafb1ccb7784abd2e582f3520e2878f7be504f3412bc780",
+      "sha256": "01b5c94f386f103e6ba78078d98fc831be06bfc9eb7de9248ffe34a001472e35",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/legacy_parent.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/legacy_parent.py",
+      "original_sha256": "121cd8e69343579d33f6dec66ffb7f297443bc4b69496202623f3f212c59a085",
+      "sha256": "014364b194093e43c0ea7da595bd1557c16d47235c53dfc0ff19c196f91a8f54",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/ot_loss.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/ot_loss.py",
+      "original_sha256": "90778474fa838b5fd8ddcaf064a9f8e9fafefa00d8d663c70f40e3ac30587052",
+      "sha256": "90778474fa838b5fd8ddcaf064a9f8e9fafefa00d8d663c70f40e3ac30587052",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/ot_stage_fast.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/ot_stage_fast.py",
+      "original_sha256": "bbad61338a00032f16bd4aa1c1a9ed648c00b421266ad709a2565ca18766ae62",
+      "sha256": "bbad61338a00032f16bd4aa1c1a9ed648c00b421266ad709a2565ca18766ae62",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/prepare_pairs.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/prepare_pairs.py",
+      "original_sha256": "c7600c342976a081cce79aaea6830b3856586b573a54eeaff9f0d791252e3e95",
+      "sha256": "e093969adc747bcc6b7bca9958ace641eccc6a7edbb1761d04fc8db0f829c88b",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/cassava_queue.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/cassava_queue.py",
+      "original_sha256": "77eb420a45eaf5d1c300aebd966003817bab909c79caa11a3e45c81a4f0d8602",
+      "sha256": "ba55a76b9aebf3ee2f4c7651a372be9cad17efabbecabd8154e6fdca8e55b1de",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/ot_stage.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/ot_stage.py",
+      "original_sha256": "ec5bc42fb7c261a7358f50d1b52adec20e2d5cdbf5d3be58e614e55632df009e",
+      "sha256": "ec5bc42fb7c261a7358f50d1b52adec20e2d5cdbf5d3be58e614e55632df009e",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/cassava_fast_queue.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/cassava_fast_queue.py",
+      "original_sha256": "495a56403e7e8211d3c694dfce6fe3f95ea85ff2846711a02f1d20a596ecbaf6",
+      "sha256": "495a56403e7e8211d3c694dfce6fe3f95ea85ff2846711a02f1d20a596ecbaf6",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/build_splits.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/build_splits.py",
+      "original_sha256": "dfeb177c377a4b2683ceffb3d98d5e262c9dc15980cd73fe8539234a6dffebdf",
+      "sha256": "dfeb177c377a4b2683ceffb3d98d5e262c9dc15980cd73fe8539234a6dffebdf",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/audit_dataset.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/audit_dataset.py",
+      "original_sha256": "2e622dfcacedc24876653530979cef4c2fa860c4127f24ff7687810523232ad6",
+      "sha256": "e57dac88074181bb572651ae91bd244de85c56909ec561d25087184d00ac8b04",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/report_progress.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/report_progress.py",
+      "original_sha256": "229cb9ffd5c1d2e2949619ffae1834cc9b546d4f225539be0c3c36c262ce4574",
+      "sha256": "229cb9ffd5c1d2e2949619ffae1834cc9b546d4f225539be0c3c36c262ce4574",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/code/recover_status_lock_handoff.py",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "code/recover_status_lock_handoff.py",
+      "original_sha256": "9ce6d3e070207ba55153b573c363553149e2623f7ace072c7a873370f4768f15",
+      "sha256": "9ce6d3e070207ba55153b573c363553149e2623f7ace072c7a873370f4768f15",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s1_l001_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s1_l001_s20260825.json",
+      "original_sha256": "6a8451a6aef7b97a78d6031a37fc7de0c906253de7ccf98a0977380fada14ac0",
+      "sha256": "03a9fe70c1ee41e052de42233638713dbb0a2b8424b84b5a8fe35c3ec7921d7d",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s1_l010_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s1_l010_s20260825.json",
+      "original_sha256": "aca54610393ca0c555b6fb55529618047d8e06daea486a916aebfb4be0d520be",
+      "sha256": "9adf9ed2c3df2e356e45f3f33bba3e9f1bfa6ede9edc72c7d16196f4acd8fd9e",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s1_l020_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s1_l020_s20260825.json",
+      "original_sha256": "5e3e745f92ac7a5d7cfca816cb21a6531c697423fc93a7742319df8e07298d73",
+      "sha256": "250b88a51f5a3616738ccbea201b4b852e9c9bacd497110110f250f6b1b75895",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s1_l030_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s1_l030_s20260825.json",
+      "original_sha256": "71fd5c568fdacb34c1487b36ce2533e0d84591a1201965936f2c021f2b1ed831",
+      "sha256": "3e0e3ec04a903f8d96cf37f549cc0a745b6077b0d9db1adc42fe6e1be6a890bb",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s1_l100_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s1_l100_s20260825.json",
+      "original_sha256": "5f907767db1e14465fe2aa49a1478db27d6b4d442ef0109afdc5d57e899ecf7d",
+      "sha256": "50c7869fc22f7f38a30feaa9d73e5a37fa8dd38da18c8cbf1812b3e249b0c480",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s2_l001_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s2_l001_s20260825.json",
+      "original_sha256": "27bde7ae455df2e5954f155b42f2d763fc4496625a7c7249c5ed3721c3536852",
+      "sha256": "9884b4726b3944b69c6ae0e3c630be3976934390df4ddf5808c23816885975ec",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s2_l010_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s2_l010_s20260825.json",
+      "original_sha256": "2edf7de2380a5197dc2324b94364f5e7f7bed93af676d4e20b95ac2b73871500",
+      "sha256": "611ea0c8ed7c2580ab10ae89f26f4774a826fb8ffa9860a253c8d7dd46bee1ef",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s2_l020_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s2_l020_s20260825.json",
+      "original_sha256": "f3dac6b1a4f35e03410c411d0e460656941a61eea08c0c0878970b921c31dff2",
+      "sha256": "58b3fe57913a135de3c891eb57c1b3de7da1c8f7a34c1d5689bd5cf70c0b0d39",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s2_l030_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s2_l030_s20260825.json",
+      "original_sha256": "f6c681c6dfef9fac199cb65e15948e2d73521d51adceaeee2559b9602ec029d9",
+      "sha256": "7d42842cf4e86569c17c26fd35a2fe1be7e9d5b149f8e06ba1be7afddd67a3a1",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s2_l100_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s2_l100_s20260825.json",
+      "original_sha256": "f485ade89ab7f02704d28f529bb527a99dc18ebdb314310c3ca8c585ce265a31",
+      "sha256": "b089c1cb69899ab6ff71900fcda81c9e72be4f8ef442f6b927dee042afd3749a",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s3_l001_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s3_l001_s20260825.json",
+      "original_sha256": "4cd300666b4be409ae223db7afeb7a92a5c8d749673f97855cd3aa0b5293e2f8",
+      "sha256": "92f78b9eaa8bc270f4cf6bf31881ee73530e0220030af4e0e7b7d8423c38e70b",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s3_l010_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s3_l010_s20260825.json",
+      "original_sha256": "08f880c7185e736f346e1be5f4c9349aa95be67200a3524fbae18b8946480f51",
+      "sha256": "c29b6661eaaae70ff6e4a90d958721e8e2ce200b2624f249d2bcd9c6ff6d7db8",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s3_l020_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s3_l020_s20260825.json",
+      "original_sha256": "9acf6c27df33b46ae0472a760a8b28cf54965296e58da29d3527ae4e4f0eed8e",
+      "sha256": "a574967a3eafd97437f7ee2e1a97a30bece4b81493ca910049ab004679793552",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s3_l030_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s3_l030_s20260825.json",
+      "original_sha256": "e44dff4c5744b698a086e93bd9aec04a65202c816dbf9fa586caf1dacfe4073b",
+      "sha256": "ce56aaaf986f66a31f1959f1b3eaa863ff6e71a4fcf50e53d052a7b5f55f22c2",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s4_l001_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s4_l001_s20260825.json",
+      "original_sha256": "fb8868299355ad0ae8e2eefbd0685923244da180bece40d3264f1ed5b388ad79",
+      "sha256": "4f60766e4d940da8208cc13147c688a1d47ddd09ed60b4d8be544b9055cc3213",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s4_l010_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s4_l010_s20260825.json",
+      "original_sha256": "b4a30760e34be49face08cea4507e90784e15d087d8f566121fe969099256fa7",
+      "sha256": "d57f45024cfcc434c13cc9fecdf501d7513c1f66340b9fb8cabea307d8b06ee6",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s4_l020_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s4_l020_s20260825.json",
+      "original_sha256": "6a7d4b518409cc952c308caea68c573cd05d9937da990843fa168f3b58b3314c",
+      "sha256": "05d434492110efa2abc66df567520a9a8807096d18f8580910bdae6e68198d26",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_fast_s4_l030_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_fast_s4_l030_s20260825.json",
+      "original_sha256": "d43ca05fed52896b00d9738932000f2cb1a2b05b32c5533df80a74e587943e4f",
+      "sha256": "26700890b2dabb6a0f3f46a327b40ea04e2502b9edf3fce9653cbbafb20519da",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_s1_l005_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_s1_l005_s20260825.json",
+      "original_sha256": "f9cb150c950d965b7986321d95f729fe09d7938677da6b139baebf21a17db99f",
+      "sha256": "2d8d3c1a2ad0dbfe9a6c2285df4f32ee3ee81f8a638806b76c8c138c6ce7b259",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_s2_l005_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_s2_l005_s20260825.json",
+      "original_sha256": "f761a75602574347569850e082df3ef362fa89846d1ef8a364841e2a63ae161b",
+      "sha256": "2dbc87f43eaac71a16c4d353fb1f602cacf4c5cc5a16aebbf23b4560d0710435",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_s3_l005_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_s3_l005_s20260825.json",
+      "original_sha256": "309c39fd19a8c993810626d365bfc1a288de73e112e6ec8005a3f0f7b7913be1",
+      "sha256": "2ef259d3aefa14e534ba587d11c0f8acda6cc975902f6af75cdb8de43b3548e9",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/cassava_itm_g1_g4_v1/configs/runs/cassava_itm_s4_l005_s20260825.public.json",
+      "source_experiment": "cassava_itm_g1_g4_v1",
+      "source_relative_path": "configs/cassava_itm_s4_l005_s20260825.json",
+      "original_sha256": "07ba75624e0c6c57496f6af6486e5b626266acf7457f0a4136b739c02343308e",
+      "sha256": "33d0bc7edef937deac2df5b6c8674cdbca56a64bab98f651262db5e55814746d",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/code/pair_model.py",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "code/pair_model.py",
+      "original_sha256": "50c299a3bc3749da3dafb1ccb7784abd2e582f3520e2878f7be504f3412bc780",
+      "sha256": "01b5c94f386f103e6ba78078d98fc831be06bfc9eb7de9248ffe34a001472e35",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/code/legacy_parent.py",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "code/legacy_parent.py",
+      "original_sha256": "9de6a87015771b8848e95088b2723be78a328f8acef9e5f847e52ea5a4dce038",
+      "sha256": "07eadf83e9cbfeca2b632a22fffb1c6c8ce6b6478c460b63bcbe36968c6d54de",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/code/ot_loss.py",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "code/ot_loss.py",
+      "original_sha256": "90778474fa838b5fd8ddcaf064a9f8e9fafefa00d8d663c70f40e3ac30587052",
+      "sha256": "90778474fa838b5fd8ddcaf064a9f8e9fafefa00d8d663c70f40e3ac30587052",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/code/ot_stage_fast.py",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "code/ot_stage_fast.py",
+      "original_sha256": "bbad61338a00032f16bd4aa1c1a9ed648c00b421266ad709a2565ca18766ae62",
+      "sha256": "bbad61338a00032f16bd4aa1c1a9ed648c00b421266ad709a2565ca18766ae62",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/code/prepare_pairs.py",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "code/prepare_pairs.py",
+      "original_sha256": "c7600c342976a081cce79aaea6830b3856586b573a54eeaff9f0d791252e3e95",
+      "sha256": "e093969adc747bcc6b7bca9958ace641eccc6a7edbb1761d04fc8db0f829c88b",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/code/cassava_queue.py",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "code/cassava_queue.py",
+      "original_sha256": "77eb420a45eaf5d1c300aebd966003817bab909c79caa11a3e45c81a4f0d8602",
+      "sha256": "ba55a76b9aebf3ee2f4c7651a372be9cad17efabbecabd8154e6fdca8e55b1de",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/code/crop_queue.py",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "code/crop_queue.py",
+      "original_sha256": "229e18a7e8eb1502cc7a1e81cf1235e481559e9b50fc3904a1d3163464a2f6dc",
+      "sha256": "02c4cc4d3f59fc5e565d1b596d20405174cdd7132bbae4abbff29a5ea872c6a6",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s1_l001_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s1_l001_s20260825.json",
+      "original_sha256": "783acf95d444a1c3ee2b27b3456bc7326759c684bb196a0cf905c9816a22c7f6",
+      "sha256": "3ac7283b81b2482c55651531852b64b5cefcfab15222361a6320674fcdfd9d97",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s1_l005_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s1_l005_s20260825.json",
+      "original_sha256": "04f10fe0d096cdba4e5306f62d550bd4a9a8e6a3786fdda9165180c3b75b21cb",
+      "sha256": "faacc94c956b4096ebedbe050e0eedb1125dfc13a4a7be730ac764e8871d99a4",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s1_l010_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s1_l010_s20260825.json",
+      "original_sha256": "c623c0940afb6d0b4db3ed0d5e6044e3ac1860118c3844b11adce7f93ed928f7",
+      "sha256": "b5420abf52af7a69d9d2b2bd3c7ee4dd77f94925a775e006d64636d9d8cc1da3",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s1_l020_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s1_l020_s20260825.json",
+      "original_sha256": "0c14817cf9d7c321a06d63de6dcf10d65b1ff4d0672811e6a057bb6bdc3b4556",
+      "sha256": "08dda581eda3b5ca4461b5daf9a92fa9006aa36c36d3b65fbcb5f783549d4569",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s1_l030_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s1_l030_s20260825.json",
+      "original_sha256": "a8c2929d27cd26001d90b67ba7bff9c874d73f912b9e4577c832b0f6c226e77a",
+      "sha256": "bf776e657bf90eff5c7d9ae9250edf32c6e4c015c581af85e1c6339cfc82196f",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s1_l100_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s1_l100_s20260825.json",
+      "original_sha256": "9e3adadf583e29dd55d7ac9995401d9ea980bbfabd9e78ba693459dccf45a05c",
+      "sha256": "0154160067dddc4d897f525630642b97e047b13970b1582b689c950f77449892",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s2_l001_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s2_l001_s20260825.json",
+      "original_sha256": "0e2e9305d4934bc614556cfdf94217c7e962dd3e176163acb689a465c3f5069e",
+      "sha256": "3afa5b9fcd375c9b24af4a572fd35fed0f00696bf1b15fcf5f459feb36d6a4a0",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s2_l005_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s2_l005_s20260825.json",
+      "original_sha256": "d914fd1ed480d23c2e702543dca8f4efcc6e4a608251cb8a236cfed7e3282e6d",
+      "sha256": "2f3093179983909b2e42db696e0004e38dcb7622837b73e902679f1ee2aa33bc",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s2_l010_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s2_l010_s20260825.json",
+      "original_sha256": "b173a535c0c301948ae8255966bf853bef75d56275b4cea57f203d91f0ee2648",
+      "sha256": "53175f408b5fa32509e0c627d3cea72d76b5b6f30cb9e59efc8d6fa756bc1add",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s2_l020_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s2_l020_s20260825.json",
+      "original_sha256": "e394a24b89b8c32703b3668e710281a218ea661ef1b08c5c3ef194ea60886a83",
+      "sha256": "8aabf38773a39f89163480ca697c6b9f232aacf9359afe1a7d0eea0982406c0c",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s2_l030_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s2_l030_s20260825.json",
+      "original_sha256": "586c4bfddd602feaa95616076f7e9f2100e9ac45edf0e789f7e8214f32907570",
+      "sha256": "84d4c3ee16cf8c96f8dcc2e04274f0ae250347351fbe940ee79ce1ecc9bb4916",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s2_l100_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s2_l100_s20260825.json",
+      "original_sha256": "e5854f89907fa8e797babd4b87490e2780a87f88741d6f813365fe44c5ccf1d9",
+      "sha256": "f5882f26a36c98d527f17aec02bf2defdcbfe236155b3a64dbd90dfa8160407b",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s3_l001_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s3_l001_s20260825.json",
+      "original_sha256": "be05f9762b0c608f05de678abee191db3c3550b4038052fe7975e46d04e8f241",
+      "sha256": "b578a8aa2eb3d6109580f0a98af7b74e25c8afc71236ba7f056f80e72e0faded",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s3_l005_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s3_l005_s20260825.json",
+      "original_sha256": "92f6fbfe77cd206c05bf3b089488e150e0e7cf36841955b1116f8933e00299a1",
+      "sha256": "b67e7f9f20e86ef1e90bb4e68e4ea75322eeb25a6ea58cbb55c3df9a3e6cba22",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s3_l010_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s3_l010_s20260825.json",
+      "original_sha256": "847876d66b59497d14954967cde32ce470fac0afdf7f63ea1b3e8d8d0547374a",
+      "sha256": "3cc362e92111429551f1ec549c3ed9091edc24ee4bd93029e03aee602cc97999",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s3_l020_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s3_l020_s20260825.json",
+      "original_sha256": "17a7d12fcdfad7d9bad5fc6847473abd37bf16246bb58ef1d94b5ce7e6a0230e",
+      "sha256": "76226da204c77ecb1ccdef9ac3498d068bca3642ece61eb6bf4f4c4edf215899",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s3_l030_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s3_l030_s20260825.json",
+      "original_sha256": "580079d0c7660b180ecea83b4f2b3005fe739a6371d9a7fb0dd8f2e7f2246d66",
+      "sha256": "a306189c6665f9fcb2b9a3c8b28a39d9195a7338c93bdf59993cdf379a6cde67",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s4_l001_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s4_l001_s20260825.json",
+      "original_sha256": "7ea249de5fcaf4128c914d737b16a2fa13be0b143fa4631e715a298e375eb44c",
+      "sha256": "82926a1ea89512b3ee0eb547bfe09bec9d6487504c45ed3592581f3ac1a5199b",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s4_l005_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s4_l005_s20260825.json",
+      "original_sha256": "f44a954b8de0cbc63a3bbb3376b176e49a589b19292ca438bd3e17aa639f6d52",
+      "sha256": "31274457749e1a452d33d0f8a849368e6b739ccf88ec9204ccb352ffc3e1d270",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s4_l010_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s4_l010_s20260825.json",
+      "original_sha256": "db5d05b1772086488bc711c3a16095ff7ecbc7bd3a2c13c25c5223b27d53495f",
+      "sha256": "d7626c49d8c4ff97aa77fb981770b86d099071426edf0e75185293d4bfcc3645",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s4_l020_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s4_l020_s20260825.json",
+      "original_sha256": "ae3a3fc48bdca905df37df65436663dbcc72d795a1381ceff1572c409c5b859f",
+      "sha256": "b37a085b362fdd329ada847b24f91e77d5cfe683170e81da4cbb7d09bced2011",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/rice_itm_s1_s4_v1/configs/runs/rice_itm_s4_l030_s20260825.public.json",
+      "source_experiment": "rice_itm_s1_s4_v1",
+      "source_relative_path": "configs/rice_itm_s4_l030_s20260825.json",
+      "original_sha256": "1ee611017ebf0c81e1f6abf222697f5c24a0ccd878a2138fdb7ba3955d552e1d",
+      "sha256": "7521b8c108922586a17c808c7c431a38ec18aacffab13c3551b21b0b0798a10b",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/code/pair_model.py",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "code/pair_model.py",
+      "original_sha256": "50c299a3bc3749da3dafb1ccb7784abd2e582f3520e2878f7be504f3412bc780",
+      "sha256": "01b5c94f386f103e6ba78078d98fc831be06bfc9eb7de9248ffe34a001472e35",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/code/legacy_parent.py",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "code/legacy_parent.py",
+      "original_sha256": "9de6a87015771b8848e95088b2723be78a328f8acef9e5f847e52ea5a4dce038",
+      "sha256": "07eadf83e9cbfeca2b632a22fffb1c6c8ce6b6478c460b63bcbe36968c6d54de",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/code/ot_loss.py",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "code/ot_loss.py",
+      "original_sha256": "90778474fa838b5fd8ddcaf064a9f8e9fafefa00d8d663c70f40e3ac30587052",
+      "sha256": "90778474fa838b5fd8ddcaf064a9f8e9fafefa00d8d663c70f40e3ac30587052",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/code/ot_stage_fast.py",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "code/ot_stage_fast.py",
+      "original_sha256": "bbad61338a00032f16bd4aa1c1a9ed648c00b421266ad709a2565ca18766ae62",
+      "sha256": "bbad61338a00032f16bd4aa1c1a9ed648c00b421266ad709a2565ca18766ae62",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/code/prepare_pairs.py",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "code/prepare_pairs.py",
+      "original_sha256": "c7600c342976a081cce79aaea6830b3856586b573a54eeaff9f0d791252e3e95",
+      "sha256": "e093969adc747bcc6b7bca9958ace641eccc6a7edbb1761d04fc8db0f829c88b",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/code/cassava_queue.py",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "code/cassava_queue.py",
+      "original_sha256": "77eb420a45eaf5d1c300aebd966003817bab909c79caa11a3e45c81a4f0d8602",
+      "sha256": "ba55a76b9aebf3ee2f4c7651a372be9cad17efabbecabd8154e6fdca8e55b1de",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/code/crop_queue.py",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "code/crop_queue.py",
+      "original_sha256": "229e18a7e8eb1502cc7a1e81cf1235e481559e9b50fc3904a1d3163464a2f6dc",
+      "sha256": "02c4cc4d3f59fc5e565d1b596d20405174cdd7132bbae4abbff29a5ea872c6a6",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s1_l001_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s1_l001_s20260825.json",
+      "original_sha256": "d3d0348f081251d72710bb58fc12b7daaec89ad2e39c90b890b6f4ede2f5b29e",
+      "sha256": "fdd8b0c8a8b9e78d79e3d2ffb408d82e2a4064249c6cef42c3af6d7df65973f9",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s1_l005_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s1_l005_s20260825.json",
+      "original_sha256": "f71fec821e8a3c13068526a9461ba00fe8afe15779168e13717ef9dfc1f30ac9",
+      "sha256": "43d1377d66302ed3f64576eccee16db8ccb005df36828b13c1c08e6c5191e5a3",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s1_l010_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s1_l010_s20260825.json",
+      "original_sha256": "095ffb8a55a9f35dd5bba7dc399a15852f301119a9eef81376727d35bb4021b8",
+      "sha256": "9a28743696717653a6ac5998eea185c9e8def9ee43f8ed2149d14479f8f8c8b4",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s1_l020_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s1_l020_s20260825.json",
+      "original_sha256": "9a5f7ca222e69e1cd84270500e8c28389d629e6853dab5f721518eb1c9b56fb5",
+      "sha256": "7bdbc869f1f0111c6b8fb19876f85f72f0f649fc99592a758fa3bf007a578d45",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s1_l030_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s1_l030_s20260825.json",
+      "original_sha256": "087a4174ad3f4bdc5d60ca430455e10d21909c737f9bf7cea07fdb65b29cfcfa",
+      "sha256": "8855dd878c4c3238ce588b14a59836dd79899dfdb933bca55666ca5a46c9e4b4",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s1_l100_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s1_l100_s20260825.json",
+      "original_sha256": "9882b21c0b029276839c046829cf830ec2026f7f77f7b5a1f656a466788fd268",
+      "sha256": "c5d8fcce7c73d515ee511471b7c9d4a9a506abda9dcaa2bcdf8a2c2dc670864e",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s2_l001_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s2_l001_s20260825.json",
+      "original_sha256": "67115e5c2bb32ce5a464f3015c99f862f7f0daa3770494af810af66e35afe075",
+      "sha256": "09b8abf90be8a6efe686394a30944c16949234bf47c9a82128772a457a1ef337",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s2_l005_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s2_l005_s20260825.json",
+      "original_sha256": "0de44f87365d43e8d67283bdd268bba45f00c5ea76be15f05d1953b204bc878e",
+      "sha256": "029101e623bc32d428f517d834d0f31d27166ffc34b05e288ff61f0b01231235",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s2_l010_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s2_l010_s20260825.json",
+      "original_sha256": "c37ba683625f89901b94eaa2838144e2be874818177cf7ff7ef5787a5c854db4",
+      "sha256": "8cf024e22e9080f6d8fb50c77b52834da2e1306929652267a4270549cc4d27cb",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s2_l020_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s2_l020_s20260825.json",
+      "original_sha256": "b44f547788c2fd35d3f9dddbc6c6629f2ce31a0a669943dd28c910cd0c1627ec",
+      "sha256": "c54c3572eb116502d3a52f00811ebda3988671bb8781f8efb216d7dafcd3383e",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s2_l030_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s2_l030_s20260825.json",
+      "original_sha256": "a0d4853712c76010d7181713be80c1ecc027af418debe3990dfe37049e3a9844",
+      "sha256": "aa1e3d4b353cbedbe804cbb1954b9698f7d6cfc5c868f1fa9d3e5fc77a750290",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s2_l100_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s2_l100_s20260825.json",
+      "original_sha256": "617239e2c00e0086d877dfd12fb3c7c742cbd2d988fe4850a44bb12f45dfb23d",
+      "sha256": "62d06b500f4d0a8f6aca58d113941a66d9550006cba6930dd4a2579afc75c340",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s3_l001_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s3_l001_s20260825.json",
+      "original_sha256": "ade60fb31d5c9a579bbfd4b46f181fef1e4a37facd67c28578f4d5bd98af25a5",
+      "sha256": "f9c303caffb6b1242a445aa73cd8c837c21f8632bc71baf937915fd84ce64507",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s3_l005_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s3_l005_s20260825.json",
+      "original_sha256": "56563958c95c7e7541ad4765c9f2fe24a6bd1b7ca571cf213d92845fbc74a9ea",
+      "sha256": "3ee90668bd022a76c4e32bd4ad80c9cc537f36fd6443f99afcbc7ded5534e21b",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s3_l010_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s3_l010_s20260825.json",
+      "original_sha256": "82fafc9485c2428beb53d9a26e62ee3c297584702290fcf61a78961bc8d7d548",
+      "sha256": "d42603d95fefa0cc963a07230487f8eb5d900105003cff64d85e21e21256a24d",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s3_l020_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s3_l020_s20260825.json",
+      "original_sha256": "746cc9421ee68018e7cbc0b0d03bf3ed15771113dbe9ca544b8981919050f09c",
+      "sha256": "ae61655369caa6dab643cea10b1d203a9f83be2b29084a98a45ba8b8d62eb9b3",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s3_l030_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s3_l030_s20260825.json",
+      "original_sha256": "eeef851cbd9ace262c9ebfe67ea5d1e7265e5cf8d35a65e7b83a330d42a2d828",
+      "sha256": "17acb2dd017efa3594d85fd5d26e8238cbdacff0ff95d7b6b14ea64ef5becf86",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s4_l001_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s4_l001_s20260825.json",
+      "original_sha256": "58cb1e485ea545cceb385017f5b4e22c411567acf9712019e1dca630c53807ed",
+      "sha256": "61e7696dda9620c8018182ed9172bc1bbf8b59845bd1d033327ee22e6f33ec85",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s4_l005_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s4_l005_s20260825.json",
+      "original_sha256": "81b5d2e70f4f8da5abe1fac63cbe4a9472b62ce9477e3a6c7c93bb86e3b91f37",
+      "sha256": "f8b60b96e9a989b00be94526478f3c072003c0dcd5efc10d342c68cecaf808ba",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s4_l010_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s4_l010_s20260825.json",
+      "original_sha256": "11695eadaf713737fdd43d8531fae207ac23a20e9648ebf19a8acca4438bb2f9",
+      "sha256": "510794e40af3ccd4477ef32a4d9daf0b80327c976f1fc8a33dcb6375585d5c39",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s4_l020_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s4_l020_s20260825.json",
+      "original_sha256": "41d6cccc5aa8642334596408fb9af17d3d524f2d579bfe15834b292c2054f6c5",
+      "sha256": "84f7542e76acdeae534935cc47c2d3ba26c2c6ab4fd8522eb80bbb1dfb078b96",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/banana_itm_s1_s4_v1/configs/runs/banana_itm_s4_l030_s20260825.public.json",
+      "source_experiment": "banana_itm_s1_s4_v1",
+      "source_relative_path": "configs/banana_itm_s4_l030_s20260825.json",
+      "original_sha256": "3fdfb33c1d53f39acec9a59e88492825e322ca19e32d12b403a86d03ac718dbf",
+      "sha256": "8bbb7580204134c24f5e379b734898000d98c45ea45b536c45b747a4b7b8fa40",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/code/common.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "code/common.py",
+      "original_sha256": "5f7d61b403533e6092de86f08bb44c2e9c33f23f0fd33d25f9cc6f480e62de92",
+      "sha256": "5f7d61b403533e6092de86f08bb44c2e9c33f23f0fd33d25f9cc6f480e62de92",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/code/data_backend.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "code/data_backend.py",
+      "original_sha256": "90c3b7579feb1340fd22758da61a3b3bc3698536e1dd09cfc165f8852325442c",
+      "sha256": "90c3b7579feb1340fd22758da61a3b3bc3698536e1dd09cfc165f8852325442c",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/code/export_data.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "code/export_data.py",
+      "original_sha256": "f30f46b927001dd3867c6d111e8fb528e14df26b3912da8c73ad72493146d1f9",
+      "sha256": "81383b51069da270a50bf079b9c26b1747c191e822b4eaf4e43daee9359094b8",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/code/losses.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "code/losses.py",
+      "original_sha256": "f3fc4f70242fd55a68cb495005906b4fe3fc8c9baf01b1c8def2cdbdcba254b4",
+      "sha256": "f3fc4f70242fd55a68cb495005906b4fe3fc8c9baf01b1c8def2cdbdcba254b4",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/code/metrics.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "code/metrics.py",
+      "original_sha256": "f4e76605bdff1e11e893f75d2a617e2a0524bc62204abc729d8ccaade97cc1d6",
+      "sha256": "f4e76605bdff1e11e893f75d2a617e2a0524bc62204abc729d8ccaade97cc1d6",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/code/pair_model.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "code/pair_model.py",
+      "original_sha256": "1d6920026340dbc367d0ae8f3b1f225749f97968140d99b58e3c8ab312b1eb6f",
+      "sha256": "1d6920026340dbc367d0ae8f3b1f225749f97968140d99b58e3c8ab312b1eb6f",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/code/train.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "code/train.py",
+      "original_sha256": "0d1449ff49ce684d4e740025022308675468c5b1653f67a36f1a9ec4603d40cf",
+      "sha256": "0d1449ff49ce684d4e740025022308675468c5b1653f67a36f1a9ec4603d40cf",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/code/unit_tests.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "code/unit_tests.py",
+      "original_sha256": "c15c6b25db4a28cd801d1f6e049533ee42760421cce5c5b2d262305b7eea911f",
+      "sha256": "c15c6b25db4a28cd801d1f6e049533ee42760421cce5c5b2d262305b7eea911f",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/core/albef_ssl/__init__.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "core/albef_ssl/__init__.py",
+      "original_sha256": "08452b851d6b71cc9451b8221534d857ce1cb3fbb18435d5c1b413d30d25a64c",
+      "sha256": "08452b851d6b71cc9451b8221534d857ce1cb3fbb18435d5c1b413d30d25a64c",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/core/albef_ssl/model.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "core/albef_ssl/model.py",
+      "original_sha256": "2f1784897dc4d94b12102bffb8c51537754f3f7c8e67c210d6d99ef98665b74b",
+      "sha256": "2f1784897dc4d94b12102bffb8c51537754f3f7c8e67c210d6d99ef98665b74b",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/core/albef_ssl/vendor/__init__.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "core/albef_ssl/vendor/__init__.py",
+      "original_sha256": "e0b1753d01681a09550c0f5f3f2c109ff9dd64a48ac0e0705236bf832ed515ec",
+      "sha256": "e0b1753d01681a09550c0f5f3f2c109ff9dd64a48ac0e0705236bf832ed515ec",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/core/albef_ssl/vendor/albef/__init__.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "core/albef_ssl/vendor/albef/__init__.py",
+      "original_sha256": "5e296332b4bbc779058d1ca3e5633abc89f9ccf1be579ca474895385edd6ef51",
+      "sha256": "5e296332b4bbc779058d1ca3e5633abc89f9ccf1be579ca474895385edd6ef51",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/core/albef_ssl/vendor/albef/bert_config.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "core/albef_ssl/vendor/albef/bert_config.json",
+      "original_sha256": "e20759eceda36082f9880ead487083abdd55de7d2161a0fcec3683570a4235f5",
+      "sha256": "e20759eceda36082f9880ead487083abdd55de7d2161a0fcec3683570a4235f5",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/core/albef_ssl/vendor/albef/vit.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "core/albef_ssl/vendor/albef/vit.py",
+      "original_sha256": "4ae33b200e2c3f74e5652cd5db57081474742293065d97d4297afd0aefa03ad2",
+      "sha256": "4ae33b200e2c3f74e5652cd5db57081474742293065d97d4297afd0aefa03ad2",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/core/albef_ssl/vendor/albef/xbert.py",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "core/albef_ssl/vendor/albef/xbert.py",
+      "original_sha256": "4efddc12b925d4b76c8a033a89c497ce2644d781a2cc88d5c9d7bdcef11135f1",
+      "sha256": "4efddc12b925d4b76c8a033a89c497ce2644d781a2cc88d5c9d7bdcef11135f1",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/apple_001_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/apple_001_fixmatch_s20260825.json",
+      "original_sha256": "65a93854e66fb46b5e43650d03b51440689f513b1bc8943a2213bd628d0acf9f",
+      "sha256": "2c05fc293f241ce44ea5060333a51b88b56d73120ace46b0e7fed22000fa5d1d",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/apple_001_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/apple_001_meanteacher_s20260825.json",
+      "original_sha256": "a83cba42772ea5f2ded0d6fcc1136e93324b9636e5ccf0ceccb835191ce3dca0",
+      "sha256": "e1bed0c2536aa90c63e70114c3461dce202f851bd19686193ade2bc31f572dcb",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/apple_005_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/apple_005_fixmatch_s20260825.json",
+      "original_sha256": "58d7a3653d0d026da3f98a76b0937e0a4834c917ca4870e701bbf13abb57264f",
+      "sha256": "bebc3ddc487f4fdc0fe23f69d87f5d6ee7e49532b00b4d90a5de94aa8fd35282",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/apple_005_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/apple_005_meanteacher_s20260825.json",
+      "original_sha256": "18bfaf9576ab78688d95cb0422c993004f8df3deddcaf6e7f10bd1f014fec594",
+      "sha256": "816c26e923f5851d5301e8a008e9fac8f5e4482be58ce2f97fa52487988672ed",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/apple_010_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/apple_010_fixmatch_s20260825.json",
+      "original_sha256": "b64bbbbc821a6b0db57dac9ee8f9ff00f66c5abefca7c25bfacb82821427e381",
+      "sha256": "474193ca3830ccccfa5ac2310169ce209cb6013239bb133595f588dcfee883a9",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/apple_010_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/apple_010_meanteacher_s20260825.json",
+      "original_sha256": "cc5b9324ad3f93193fc5b69bdec2d7fe94c732aa249fc36be0bd633f0c1d35ff",
+      "sha256": "c4bbaa52cb544eb08eafc3b9c7db417f141d3c545bb91f7978f701a8889c7d53",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/apple_020_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/apple_020_fixmatch_s20260825.json",
+      "original_sha256": "56b55f8c7b97c145f47d6bf4bbcfa429545513a65bc307c6b94daa01a203b03d",
+      "sha256": "90301668f7dcbfb97c85756e2dc995f18bcbe79aff04e43c1632b33f4564d7ad",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/apple_020_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/apple_020_meanteacher_s20260825.json",
+      "original_sha256": "e8e12baf8748733135e78a02908feb10eca823eaab172cb2d0267dc9e0f2439f",
+      "sha256": "e7dd29ccbed5847d3ba6ececf55e1ea9943b9870880e7d2331e0b940b0f1510d",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/apple_030_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/apple_030_fixmatch_s20260825.json",
+      "original_sha256": "354355343fef5ddcad7b0d4b282e7ba23d271d00b0b79a198e14391cf1c112d8",
+      "sha256": "c375546cf54aa4d76d843432b0fffaa1c299c023ab85153d71f4b472383db464",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/apple_030_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/apple_030_meanteacher_s20260825.json",
+      "original_sha256": "e0624b7568c51b12bde63c70a9b699d9c87525fe9337b3098c8fa8177bf715f1",
+      "sha256": "fc4ca277041ee07773e5073cc3c8f4e0bdb055c25daa08fbb8e72369a6fd320d",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/banana_001_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/banana_001_fixmatch_s20260825.json",
+      "original_sha256": "83f4416ff7a86d7b87010db3a65e55855fbfa85e8a008e84839960d4816b2691",
+      "sha256": "8b991c278b189937b593f6d3f8f78c82bc44d82890c571bff0e508b567767250",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/banana_001_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/banana_001_meanteacher_s20260825.json",
+      "original_sha256": "6607c27288c62fd0ae5abf0584b51b0f142bccea4f9ed3959595a3a2b3b204b8",
+      "sha256": "db23bab41ae85141c2ecb57adf39b8bf4e3aafd7774c64390dd92aa91ca9b2dc",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/banana_005_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/banana_005_fixmatch_s20260825.json",
+      "original_sha256": "488f053ca976726751d8abb97c041e448f873b23b1a7b52d8ef19f13dee39731",
+      "sha256": "118fb965c394d894abcb1d06317dbd8da6212ed43a0233e32255d686f59ce0f8",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/banana_005_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/banana_005_meanteacher_s20260825.json",
+      "original_sha256": "7d9db3a5932c7c653dbc2d33266e63282a69d3d5d8a05a243182fa98213ba5dd",
+      "sha256": "7a29403d6fdbf9d1da29c5bb583a7ae9714cc6a5046214472bb5c40e5dcbbdfe",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/banana_010_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/banana_010_fixmatch_s20260825.json",
+      "original_sha256": "284f8684e828000a7b51a9e49a02ba733a7a27a5ecfaba6e8ca3d66ef21bf36c",
+      "sha256": "13931119c36d0c09584e538366f27e031b1d23fd67f5c106778f68c5fc049a29",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/banana_010_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/banana_010_meanteacher_s20260825.json",
+      "original_sha256": "80cb7f61d8af97f763a905ce09a1ef992a1cd0ef4bc53d433193c8bb7f7bc88c",
+      "sha256": "9b1994351d70aad9c758dd1ae760dd4c662596451bed137b546b5aedf635c11b",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/banana_020_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/banana_020_fixmatch_s20260825.json",
+      "original_sha256": "3c45a1a617cfda4cf795b9754beab418f73136ac5de3e63174109582cdf45583",
+      "sha256": "1cffcba82634eeed1f0e7d7d5e931044152f72cfd59e5467d6487dfd2c81a2e6",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/banana_020_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/banana_020_meanteacher_s20260825.json",
+      "original_sha256": "23ed190d7354ed2fbef3e38e81b16137a28665ec2c1d3fcc15f5501d9e98dfef",
+      "sha256": "dd4cf5f6c450de8e06eb6da5b0382f01ea799aecf24e2374e6a464e099ef02be",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/banana_030_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/banana_030_fixmatch_s20260825.json",
+      "original_sha256": "df78bef8634b8533db9ffee0366384844b3aab965bb442ec395212a20ea25e1e",
+      "sha256": "bc3ea8bfdf2bd720cd7ad106cc79a8eed883f78938925cc0045e4ef6914a5834",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/banana_030_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/banana_030_meanteacher_s20260825.json",
+      "original_sha256": "16dcc9825ca9f25e5d0a3b20f923749de6ecebcf7ba46ed9386dc3a0b536bda3",
+      "sha256": "3a545c53a0d220bbfab834b0ed5c6e7fe86af91528bd4a3cb0c6df28423456f3",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/cassava_001_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/cassava_001_fixmatch_s20260825.json",
+      "original_sha256": "27ab1a8b91fdb0d408eea56444e555132043fc5f61df4be826ad58fe5972b4c3",
+      "sha256": "eba7c9d118f0c3d687213dd799d2ff8852b171edbf1a5c936a1e5cba0da7e989",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/cassava_001_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/cassava_001_meanteacher_s20260825.json",
+      "original_sha256": "613761f8613b22cfe475354846dd265b66467ce0f61a5eb8816a7871527cb06b",
+      "sha256": "efb6931b9d70933221850f83e501403c8735823969bcc80dcb885d9095bb440c",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/cassava_005_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/cassava_005_fixmatch_s20260825.json",
+      "original_sha256": "a056c467dc460d58bb1fbe91ac176f82e6de0376a641114ee1da6548dc177b3b",
+      "sha256": "1ffa9e032f4949b8556798094252d72b5425733382aff1026cffe4c4037d25e3",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/cassava_005_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/cassava_005_meanteacher_s20260825.json",
+      "original_sha256": "f34b52ddbed622cd8e35aa773a23270f48680f9f20523385724007a3405ab52b",
+      "sha256": "588df27d08e5f53c57452febc717830369c110f520ef586b893aaa0a63744885",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/cassava_010_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/cassava_010_fixmatch_s20260825.json",
+      "original_sha256": "c11a20bf2e8cf64888c85f0d55e0279cc53c84c3ca47cf6ea1a879a35a98b822",
+      "sha256": "176bb32f991c6aaf79a74ec91e07bf3d197a2453c52551ed9882275f17aa1087",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/cassava_010_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/cassava_010_meanteacher_s20260825.json",
+      "original_sha256": "6f08b1cf0702cfa12766842d79feac6c83fc5da3b91a822f99b4f2a83f9a1e6b",
+      "sha256": "6b33342753efe04ec7b4cc6134bec1874870567d1a3eb6c5023ccfc68d2bc0ae",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/cassava_020_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/cassava_020_fixmatch_s20260825.json",
+      "original_sha256": "1a8a8e2a890c6a88368b02c5a14a22adada0ec920fe46464d2944dcf34cd24c9",
+      "sha256": "1cca2fc6fcdb54d18ec46d45681903393c63f5706274518c2be94862c2516eba",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/cassava_020_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/cassava_020_meanteacher_s20260825.json",
+      "original_sha256": "206c9c6883f99674a3d527f16e03b93d66a8547603a2afb0b15478334c60d05f",
+      "sha256": "fe09f0b00df64ff3f352623a823b9837aa7c38ab84fdbdb7604c2c25f552134c",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/cassava_030_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/cassava_030_fixmatch_s20260825.json",
+      "original_sha256": "936615c6edca6ea41edc08c5290120b8d061af5b2dd6fde5d124f2947917f13c",
+      "sha256": "c304c4c47a39f99f2c37cb5f98e046297fddc934bd7fec09f2ba746be7a8f0fc",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/cassava_030_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/cassava_030_meanteacher_s20260825.json",
+      "original_sha256": "56e84c3845e43b8d5118846eb6b63cca2e429b01f0698081689fd820fc77121b",
+      "sha256": "3c7c32ac2af49a45e5a66c6236d5d55a80f86914c21dfd8b152d4f7a8c30b4f5",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/rice_001_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/rice_001_fixmatch_s20260825.json",
+      "original_sha256": "0edf6d0c2f6e5a944082d8158c01514407d3b6d998fef70985fee12c829a9ff6",
+      "sha256": "0fb0d4d9ebe516402ec456fe8f42fe488c2185f4e787132b80a28518962c7273",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/rice_001_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/rice_001_meanteacher_s20260825.json",
+      "original_sha256": "3c756a743426be09faf29624a0f2499c853cdd3fe57b15437e3541a02e16adb0",
+      "sha256": "ae1d9fe54f8ca838e64810e5ae4511adc494936ece57fd009988209d3ff6ab14",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/rice_005_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/rice_005_fixmatch_s20260825.json",
+      "original_sha256": "0056e54dfde76d5aa6057cba708c99bd8f442176c0a5e2ff065d41767ede49c5",
+      "sha256": "66e9877a90f4328695e524362cff420dc4f4e63138400ce135238e106b1ec280",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/rice_005_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/rice_005_meanteacher_s20260825.json",
+      "original_sha256": "bbd251d74a178cf9a458caf64dbad935b3ba3467bcd7a6a53da3c7a40aad0812",
+      "sha256": "de93f2f28f35206ea4cbb45d0b9bb05c3cda243c1741aab05398713772df6e53",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/rice_010_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/rice_010_fixmatch_s20260825.json",
+      "original_sha256": "5deadd5caaf50a91c0ec978b16537e2128805a9320550b805e3abf1e29c6bbc3",
+      "sha256": "e7b70c317bfaa2643b2c00ae4c980427c7553f5b0bb14995cb4c14b1b6971d0f",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/rice_010_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/rice_010_meanteacher_s20260825.json",
+      "original_sha256": "4830da7966c130b9b13033f9851db88d8270a8025a1bcf5bc5e7ed2ff50329d7",
+      "sha256": "45a0a916ec6198c4eecb87c5c4ef5896cbd9079440f3a539a467ff1bfbe916a3",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/rice_020_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/rice_020_fixmatch_s20260825.json",
+      "original_sha256": "d49503d857a59358aab384dd3eb103674e8826a948871cb8da7a55786a5285dd",
+      "sha256": "920b0b0222476012737e4873c610e31aa623a8206c02ee5b627f62c5d1d06584",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/rice_020_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/rice_020_meanteacher_s20260825.json",
+      "original_sha256": "35d62759769e4aa0e0572eec1b7b67327199bf7e839142d947bd145660493e6f",
+      "sha256": "610502595af3b2db6fbb1ebd4a1c4baed10c009d74202900cc05c3031863c70d",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/rice_030_fixmatch_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/rice_030_fixmatch_s20260825.json",
+      "original_sha256": "3ea4e615733dbcba1e8da0fe53ae5d4eabdd5014b1d2d2dacee6e8675ed0aae5",
+      "sha256": "f90ee1c3520365d3c791217bd95e60e4dff1be496d367396207b9f1b3e59e507",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_mt_fixmatch_v1/configs/runs/rice_030_meanteacher_s20260825.public.json",
+      "source_experiment": "ssl_main_local_assist_v1",
+      "source_relative_path": "configs/runs/rice_030_meanteacher_s20260825.json",
+      "original_sha256": "fb59f69d73f366ee3acf04b68013372f431c6008f13010118202b795d667df2d",
+      "sha256": "2ffded47f370dd9561a4b36efdd363148441bf36a886df187d216b5756f51f83",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/base_train.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/base_train.py",
+      "original_sha256": "0d1449ff49ce684d4e740025022308675468c5b1653f67a36f1a9ec4603d40cf",
+      "sha256": "0d1449ff49ce684d4e740025022308675468c5b1653f67a36f1a9ec4603d40cf",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/common.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/common.py",
+      "original_sha256": "475fa49b19d61904748f29981420a6f7be7fa23fd1254ec6916ec87efab8a843",
+      "sha256": "475fa49b19d61904748f29981420a6f7be7fa23fd1254ec6916ec87efab8a843",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/data_backend.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/data_backend.py",
+      "original_sha256": "90c3b7579feb1340fd22758da61a3b3bc3698536e1dd09cfc165f8852325442c",
+      "sha256": "90c3b7579feb1340fd22758da61a3b3bc3698536e1dd09cfc165f8852325442c",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/dispatcher.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/dispatcher.py",
+      "original_sha256": "8e06424bce2650b4088cdf7607c45895dc0e6c76e1f1d32f05747546e0b8b01c",
+      "sha256": "8e06424bce2650b4088cdf7607c45895dc0e6c76e1f1d32f05747546e0b8b01c",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/export_data.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/export_data.py",
+      "original_sha256": "f30f46b927001dd3867c6d111e8fb528e14df26b3912da8c73ad72493146d1f9",
+      "sha256": "81383b51069da270a50bf079b9c26b1747c191e822b4eaf4e43daee9359094b8",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/freematch_algorithm.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/freematch_algorithm.py",
+      "original_sha256": "703456e8d87f32579ca305201132a1fc1ab156457f2c1ca72fe3c227d1e0dfa0",
+      "sha256": "703456e8d87f32579ca305201132a1fc1ab156457f2c1ca72fe3c227d1e0dfa0",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/initialization.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/initialization.py",
+      "original_sha256": "3b7a3d3eface2a2876a60360d185e4ac459fddd472296590d6b34f3ad435b947",
+      "sha256": "b1049f438c2273690313f787a05c1dec26a7b48fcf71e35d25bbbcc419ed5e8f",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/losses.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/losses.py",
+      "original_sha256": "f3fc4f70242fd55a68cb495005906b4fe3fc8c9baf01b1c8def2cdbdcba254b4",
+      "sha256": "f3fc4f70242fd55a68cb495005906b4fe3fc8c9baf01b1c8def2cdbdcba254b4",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/metrics.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/metrics.py",
+      "original_sha256": "f4e76605bdff1e11e893f75d2a617e2a0524bc62204abc729d8ccaade97cc1d6",
+      "sha256": "f4e76605bdff1e11e893f75d2a617e2a0524bc62204abc729d8ccaade97cc1d6",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/pair_model.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/pair_model.py",
+      "original_sha256": "1d6920026340dbc367d0ae8f3b1f225749f97968140d99b58e3c8ab312b1eb6f",
+      "sha256": "1d6920026340dbc367d0ae8f3b1f225749f97968140d99b58e3c8ab312b1eb6f",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/test_freematch.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/test_freematch.py",
+      "original_sha256": "82aedde311317b462f8991aacc6529fd85cf0cf46909a24d63f2f153810b6bff",
+      "sha256": "82aedde311317b462f8991aacc6529fd85cf0cf46909a24d63f2f153810b6bff",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/train.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/train.py",
+      "original_sha256": "42af8cef6e19021f45fb8658142dc28646b1a1afa02da6dee9236be667b2c718",
+      "sha256": "90daf8ededc3f8194cc751b73f54e35b8abcc77bbb37f6e65f0537a832e5b69a",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization",
+        "deidentified deployment/path literal"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/code/unit_tests.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "code/unit_tests.py",
+      "original_sha256": "c15c6b25db4a28cd801d1f6e049533ee42760421cce5c5b2d262305b7eea911f",
+      "sha256": "c15c6b25db4a28cd801d1f6e049533ee42760421cce5c5b2d262305b7eea911f",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/core/albef_ssl/__init__.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "core/albef_ssl/__init__.py",
+      "original_sha256": "08452b851d6b71cc9451b8221534d857ce1cb3fbb18435d5c1b413d30d25a64c",
+      "sha256": "08452b851d6b71cc9451b8221534d857ce1cb3fbb18435d5c1b413d30d25a64c",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/core/albef_ssl/model.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "core/albef_ssl/model.py",
+      "original_sha256": "2f1784897dc4d94b12102bffb8c51537754f3f7c8e67c210d6d99ef98665b74b",
+      "sha256": "2f1784897dc4d94b12102bffb8c51537754f3f7c8e67c210d6d99ef98665b74b",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/core/albef_ssl/vendor/__init__.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "core/albef_ssl/vendor/__init__.py",
+      "original_sha256": "e0b1753d01681a09550c0f5f3f2c109ff9dd64a48ac0e0705236bf832ed515ec",
+      "sha256": "e0b1753d01681a09550c0f5f3f2c109ff9dd64a48ac0e0705236bf832ed515ec",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/core/albef_ssl/vendor/albef/__init__.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "core/albef_ssl/vendor/albef/__init__.py",
+      "original_sha256": "5e296332b4bbc779058d1ca3e5633abc89f9ccf1be579ca474895385edd6ef51",
+      "sha256": "5e296332b4bbc779058d1ca3e5633abc89f9ccf1be579ca474895385edd6ef51",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/core/albef_ssl/vendor/albef/bert_config.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "core/albef_ssl/vendor/albef/bert_config.json",
+      "original_sha256": "e20759eceda36082f9880ead487083abdd55de7d2161a0fcec3683570a4235f5",
+      "sha256": "e20759eceda36082f9880ead487083abdd55de7d2161a0fcec3683570a4235f5",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/core/albef_ssl/vendor/albef/vit.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "core/albef_ssl/vendor/albef/vit.py",
+      "original_sha256": "4ae33b200e2c3f74e5652cd5db57081474742293065d97d4297afd0aefa03ad2",
+      "sha256": "4ae33b200e2c3f74e5652cd5db57081474742293065d97d4297afd0aefa03ad2",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/core/albef_ssl/vendor/albef/xbert.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "core/albef_ssl/vendor/albef/xbert.py",
+      "original_sha256": "4efddc12b925d4b76c8a033a89c497ce2644d781a2cc88d5c9d7bdcef11135f1",
+      "sha256": "4efddc12b925d4b76c8a033a89c497ce2644d781a2cc88d5c9d7bdcef11135f1",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Apache-2.0 headers + ALBEF license; see third_party"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/apple_001_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/apple_001_freematch_s20260825.json",
+      "original_sha256": "904be314cb36ca0a7ee0628aca7a727e51fb3b5c3923e43fdb4bbe40f055c4c0",
+      "sha256": "8130b8da2466f445dada6eeef63392163a7a0bd1780b00f7b9baf0ff349b8a43",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/apple_005_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/apple_005_freematch_s20260825.json",
+      "original_sha256": "839c4be4f1c371bd7ab3161db1b11c46c2b422db4b32f6f7d085c29c2d485529",
+      "sha256": "ededfdf74cf653d20b9bf10c32494800472dbf13d16802e785c735728a39b2e9",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/apple_010_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/apple_010_freematch_s20260825.json",
+      "original_sha256": "143e7b20dc204d451b230d25b4bcc1d6b166db1ba504307b74545b1ad01d3822",
+      "sha256": "68f33bcfe575030c7ea5149c852f6dd65ad2f9734a1ee6a4066a602c79438423",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/apple_020_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/apple_020_freematch_s20260825.json",
+      "original_sha256": "a756de3a78f37e4b9ad87027b14e32625274d8ce7d575511ee6b44fd449282c2",
+      "sha256": "ff13b854d11634b348b6b862a53d383ca4486132be50a2eb010aca226c334da6",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/apple_030_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/apple_030_freematch_s20260825.json",
+      "original_sha256": "667e360b0d61cbcb67681de30afac614954ed63e7efb407bda7feecf21e7cb45",
+      "sha256": "dcd4425fbad571ab52fb5f6f83464976013bb00e9fdab99d425aac8888fe945d",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/banana_001_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/banana_001_freematch_s20260825.json",
+      "original_sha256": "db7084ec299932e4466a20776a80cb26a5920094c32a3c327ab0dd67508fecce",
+      "sha256": "a360590cd4585c317d591dd93661c3b221fb425957f9d16951b6b42ef4326848",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/banana_005_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/banana_005_freematch_s20260825.json",
+      "original_sha256": "9145900c17866c7aaf5ab268b099e508d1ce80f8431911993d297cc101d98cf4",
+      "sha256": "a7ccead611030330c4a4a963336a283bccb35043491491c0888aa3b8bf3bd2f1",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/banana_010_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/banana_010_freematch_s20260825.json",
+      "original_sha256": "484cf9a32080026a80764806323a275760e84c6fbd22b1f065850aec31120a27",
+      "sha256": "da2118cc00ec902cba12e65f351308fe0e0c0ba891cf4c2c297779ccd77d9182",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/banana_020_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/banana_020_freematch_s20260825.json",
+      "original_sha256": "61e6c61de92831cae3cd7ce32c2451784cc26dfa4b5f62ff0134b34f2e7c6fee",
+      "sha256": "d500d803d1d2e60a11d86b31399795338439aad96f900afd15a3098c296aa6b8",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/banana_030_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/banana_030_freematch_s20260825.json",
+      "original_sha256": "bc1e71d9f65b139087b13fec3cfa7abde193414160e00da30d91b05699610ae6",
+      "sha256": "619f7b6dbea43593490c3db7deddd18cd5dabd79ba684df878f4fa1a4977e439",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/cassava_001_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/cassava_001_freematch_s20260825.json",
+      "original_sha256": "4ffac4b566ec86e6c0a2fc82b01ffdebb7097752e1e07642bd233b5fc896e9da",
+      "sha256": "581fc075af6571a384709027481728e50dc42946b04753d21cd635d225a09647",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/cassava_005_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/cassava_005_freematch_s20260825.json",
+      "original_sha256": "1bd8b334f827b3085f9cad40214c666e38e4742dfe20235e54c2b458c400c7e7",
+      "sha256": "f352d5f8c90f3b4a856e2ee8df8e42700a0bba5ab497853872ad80e43f2cfe0d",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/cassava_010_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/cassava_010_freematch_s20260825.json",
+      "original_sha256": "e0ef9b885b4a98edd080c6d5a8264542e278acbb1340b3d97545e81d0fbae426",
+      "sha256": "94e162a761c1afa3349e95c27d4bba14e5bab0d5e2dc9f620d34f0d64e94ca37",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/cassava_020_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/cassava_020_freematch_s20260825.json",
+      "original_sha256": "fb7ba2fc74db7a5f2ef588ba1c474d6114aadc594be8c148f745cb0e9b6baaaf",
+      "sha256": "b074c5c9b07597f088cae26efde926d2d60a23593cf75bce76dde52e68d23168",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/cassava_030_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/cassava_030_freematch_s20260825.json",
+      "original_sha256": "701a1d3b0ec846c61591dbb4d0f681f61628606f5d56ea57784926db88e5f505",
+      "sha256": "a3585be4482e95113f9a4bf4ec6c02d2b2be7a5f0323582982efe9f8bdb25bfc",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/rice_001_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/rice_001_freematch_s20260825.json",
+      "original_sha256": "92baab040c622c40646e8625f614bb9ea88bac2b1306d2bd87af7b5c59d60c05",
+      "sha256": "a47935e553c776c7014d8c6eb7fe230f22e03412286e4f9aad51834b32bbab8c",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/rice_005_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/rice_005_freematch_s20260825.json",
+      "original_sha256": "7acbb2baf850a6ee96fd749ca36304303bb29f46d845d4b3301908d425273a67",
+      "sha256": "3eff8a15d3a9ddf845125a31dbabc7f2a6768551cd25d0bb4c7bdb93fc2a61e6",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/rice_010_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/rice_010_freematch_s20260825.json",
+      "original_sha256": "0870b2641f51fba443c5af6f720fba86c1faa7ae694a1a9da8671eb0bc2eafeb",
+      "sha256": "57f4bff10de2c5a38bf08b78f6bd0758fd9a31b879f4f1b89c50702e296f3796",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/rice_020_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/rice_020_freematch_s20260825.json",
+      "original_sha256": "f3d460f61c52277ce50ea4d7ffcd4f0ecbb015797c67a307786631253345f33c",
+      "sha256": "ec8ec8626162210a4c953368cbbf61f7df02a59c1cfc8baf2bd57a8f886c8711",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/configs/runs/rice_030_freematch_s20260825.public.json",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "configs/runs/rice_030_freematch_s20260825.json",
+      "original_sha256": "90afdefdc1d22400cc9ff814507704955691210a9c13ee54a5cb33cac77277c4",
+      "sha256": "fb6ae4bbe137db6f7a7b122e429ee5b2edc309b7cd191298c94b6f128b98ba7f",
+      "transformations": [
+        "scientific config view; private bindings omitted"
+      ],
+      "license": "Author-owned configuration"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/orchestration/speed_v4/bench.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "orchestration/speed_v4/bench.py",
+      "original_sha256": "5bfe41c99193dec7973ad5578882dfae48763923203199dd638d1cc1a2a924db",
+      "sha256": "5bfe41c99193dec7973ad5578882dfae48763923203199dd638d1cc1a2a924db",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/orchestration/speed_v4/boundary.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "orchestration/speed_v4/boundary.py",
+      "original_sha256": "1ef9953e8038ee03406dd8abd7fe9cbe04204789313171bbefadfd790e5d2e33",
+      "sha256": "1ef9953e8038ee03406dd8abd7fe9cbe04204789313171bbefadfd790e5d2e33",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/orchestration/speed_v4/candidates.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "orchestration/speed_v4/candidates.py",
+      "original_sha256": "4f1be01823fd5ad4ad3d4fe7c8bd3154902d1ec79725d71470659e97705a3cc4",
+      "sha256": "4f1be01823fd5ad4ad3d4fe7c8bd3154902d1ec79725d71470659e97705a3cc4",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/orchestration/speed_v4/cpu_tests.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "orchestration/speed_v4/cpu_tests.py",
+      "original_sha256": "e9c34f58a9819ce99b99ace1bba896b70f63c369d4b4f84be4cc71676075a491",
+      "sha256": "e9c34f58a9819ce99b99ace1bba896b70f63c369d4b4f84be4cc71676075a491",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/orchestration/speed_v4/job.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "orchestration/speed_v4/job.py",
+      "original_sha256": "f9374df21be5d7138cac7ede89c6ceb7621fb2bfe2a765ef66b4eaaa4d552bca",
+      "sha256": "f9374df21be5d7138cac7ede89c6ceb7621fb2bfe2a765ef66b4eaaa4d552bca",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/orchestration/speed_v4/parallel_bench.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "orchestration/speed_v4/parallel_bench.py",
+      "original_sha256": "19eb32d518909d9ac4dd5be0ecdf2027533361b3e269ed7da63db6bbd0e42569",
+      "sha256": "19eb32d518909d9ac4dd5be0ecdf2027533361b3e269ed7da63db6bbd0e42569",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/orchestration/speed_v4/runtime.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "orchestration/speed_v4/runtime.py",
+      "original_sha256": "dcb647e4b8671dc606320ffb5a6ccbbf8db586cb1c26746ba428913f3bb57112",
+      "sha256": "dcb647e4b8671dc606320ffb5a6ccbbf8db586cb1c26746ba428913f3bb57112",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/orchestration/speed_v4/supervisor.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "orchestration/speed_v4/supervisor.py",
+      "original_sha256": "14fa5daf9acc3e1e7a3fbc75fcf8220d31c8448fe81eb961429aa5faf2f79fea",
+      "sha256": "14fa5daf9acc3e1e7a3fbc75fcf8220d31c8448fe81eb961429aa5faf2f79fea",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "Author-owned experimental source; upstream attribution retained"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/references/usb/freematch/freematch.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "references/usb/freematch/freematch.py",
+      "original_sha256": "e4ed00ca1c7a230b93739c0d132ddc77f215dc86eb8f17f29033dc7ab3a6cd85",
+      "sha256": "7b9fffbda5a17fbd6fd7006dede089419544eeb9d1edaeba8cd636866a850a9e",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "USB MIT; see third_party/USB_LICENSE.txt"
+    },
+    {
+      "repository_path": "experiments/multicrop_itm_freematch_v1/references/usb/freematch/utils.py",
+      "source_experiment": "ssl_main_server3_freematch_v1",
+      "source_relative_path": "references/usb/freematch/utils.py",
+      "original_sha256": "05a357f746801425c58a0717c62881243507c2b36081599518515966dfc67255",
+      "sha256": "ea32fc2a2d4502d2b2b5f3f7bf9a9b2a0754d94dc66eeb5410412da8fa536cca",
+      "transformations": [
+        "UTF-8/LF and final-newline normalization"
+      ],
+      "license": "USB MIT; see third_party/USB_LICENSE.txt"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "source_repo": "EGOISTyrh/mushubanjiandu",
+  "source_revision": "860cac3804b0b9347ae513730615a8d060d478db",
+  "split_manifest": "data/splits/split_manifest.json",
+  "split_seed": 20261001,
+  "training_seed": 20260825,
+  "budget_order": [
+    "005",
+    "020",
+    "001",
+    "010",
+    "030",
+    "100"
+  ],
+  "variants": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ],
+  "lineage": {
+    "S1": "ALBEF_4M",
+    "S2": "same_budget_S1_best",
+    "S3": "same_budget_S1_best",
+    "S4": "same_budget_S3_best"
+  },
+  "student_steps_per_stage": 1600,
+  "max_text_tokens_including_special_tokens": 384,
+  "caption_field": "blind",
+  "negative_policy": "random_other_case_full_blind_caption_cassava_v1",
+  "non_leaf_policy": "retain_and_tag",
+  "validation_anchors": 400,
+  "test_evaluation": false,
+  "ot_full_budget": "not_applicable_U_empty",
+  "publication": {
+    "kind": "deidentified_scientific_config_view_not_launch_ready",
+    "historical_fingerprint_reusable": false,
+    "private_runtime_inputs_and_checkpoint_bindings_omitted": true
+  },
+  "completion_state_is_not_encoded_in_this_definition": true
+}

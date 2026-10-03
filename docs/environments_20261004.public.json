@@ -1,0 +1,51 @@
+{
+  "kind": "observed_versions_not_clean_install_lock",
+  "environments": {
+    "local_windows_main": {
+      "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "packages": {
+        "torch": "2.5.1+cu121",
+        "torchvision": "0.20.1+cu121",
+        "numpy": "1.26.4",
+        "Pillow": "11.3.0",
+        "transformers": "4.57.6",
+        "timm": "1.0.24",
+        "scikit-learn": "1.5.2",
+        "huggingface-hub": "0.36.2"
+      }
+    },
+    "linux_freematch": {
+      "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Mar 19 2026, 20:20:58) [GCC 14.3.0]",
+      "packages": {
+        "torch": "2.5.1+cu121",
+        "torchvision": "0.20.1+cu121",
+        "numpy": "1.26.4",
+        "Pillow": "11.3.0",
+        "transformers": "4.57.6",
+        "timm": "1.0.24",
+        "scikit-learn": "1.5.2",
+        "huggingface-hub": "0.36.2"
+      }
+    },
+    "archived_windows_main": {
+      "python": "3.11.5 | packaged by Anaconda, Inc. | (main, Sep 11 2023, 13:26:23) [MSC v.1916 64 bit (AMD64)]",
+      "packages": {
+        "torch": "2.5.1+cu124",
+        "torchvision": "0.20.1",
+        "numpy": "1.26.4",
+        "Pillow": "11.3.0",
+        "transformers": "4.57.6",
+        "timm": "1.0.24",
+        "scikit-learn": "1.5.2",
+        "huggingface-hub": "0.36.2"
+      }
+    },
+    "local_windows_ablation": {
+      "python": "3.9.4",
+      "torch": "2.5.1+cu121",
+      "scope": "existing frozen ablation environment",
+      "not_the_main_assist_environment": true
+    }
+  },
+  "machine_identifiers_and_paths_omitted": true
+}

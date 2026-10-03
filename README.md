@@ -1,6 +1,8 @@
-# 图文匹配实验：BCE、Pair-USA、OT、SoftMatch 与 SimMatch
+# 图文匹配实验与论文配置索引
 
-本仓库保存苹果图文匹配 G1–G4 消融实验，以及四作物 SoftMatch / SimMatch 实验的**代码和实验定义**。不包含图片、caption、训练/验证配对表、样本 ID、模型权重、教师目标、预测分数或实验结果。远端是公开仓库；请勿将这些输入或输出直接放入 Git。上传边界见 [`docs/PUBLIC_UPLOAD_POLICY.md`](docs/PUBLIC_UPLOAD_POLICY.md)。
+本仓库保存苹果与三作物消融，以及 Mean Teacher、FixMatch、SoftMatch、SimMatch、FreeMatch 的**代码和实验定义**。不包含图片、caption、训练/验证配对表、样本 ID、模型权重、教师目标、预测分数或原始实验结果。远端是公开仓库；请勿将这些输入或输出直接放入 Git。上传边界见 [`docs/PUBLIC_UPLOAD_POLICY.md`](docs/PUBLIC_UPLOAD_POLICY.md)。
+
+2026-10-04三机补充：[实验/论文配置索引](docs/THREE_HOST_EXPERIMENTS_20261004.md)、[126个唯一科学配置视图](docs/experiment_catalog_20261004.json)、[源码版本/hash映射](docs/source_manifest_three_hosts_20261004.json)。新增本机66消融、原Windows+本机唯一40 MT/FM、Linux20 FreeMatch；126是计划配置数，不是完工数。可用 `python tools/find_experiment_config.py --crop banana --method fixmatch --budget 10` 查到具体配置和代码。原SoftMatch/SimMatch自管服务器40不纳入本次结果收集，已有代码及提交原样保留。
 
 新增 [`experiments/multicrop_itm_soft_simmatch_v1`](experiments/multicrop_itm_soft_simmatch_v1)：苹果、木薯、水稻、香蕉 × 五预算 × 两算法。单种子、仅验证集、SoftMatch2200步 / SimMatch2400步，非等算力；是ITM适配，不是病害分类，也不是官方分类任务精确复现。源码含原始与加速执行层，复现限制详见该目录。下方 G1–G4 定义保持原样，不与这轮算法表混合。
 
