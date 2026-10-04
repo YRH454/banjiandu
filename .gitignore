@@ -59,3 +59,23 @@ experiments/multicrop_itm_soft_simmatch_v1/archive/speedup_20261002/bench*/
 *.tar
 *.tar.gz
 *.zip
+
+# Generated experiment results must stay outside this public repository.
+**/results/
+**/result_*.json
+**/*_result.json
+**/results*.json
+**/summary_*.json
+**/*_summary.json
+**/metrics.json
+**/metrics_*.json
+**/*_metrics.json
+**/predictions*.json
+**/reports/*
+# These are authored protocol registrations, not generated result reports.
+!**/reports/执行登记*.md
+**/tensorboard/
+**/wandb/
+events.out.tfevents.*
+*.xlsx
+*.xls
