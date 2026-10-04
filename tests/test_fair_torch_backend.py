@@ -6,6 +6,7 @@ import math
 import sys
 import unittest
 from unittest.mock import patch
+from fair_test_helpers import synthetic_holdout, synthetic_teacher_accounting, synthetic_teacher_resources
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,7 +20,9 @@ except ImportError:
     torch = None
 
 if torch is not None:
-    from fair_benchmark.spec import fingerprint, make_config
+    from fair_benchmark.spec import fingerprint, make_config, lr_multiplier
+    from fair_benchmark.budget import BudgetController
+    from fair_benchmark.references import source_module
     from fair_benchmark.torch_backend import TorchBackend, tree_digest
 
     class TinyPair(nn.Module):
@@ -46,15 +49,22 @@ if torch is not None:
     class SyntheticPairs:
         def __init__(self, cfg):
             self.cfg = cfg
-            self.input_identity = {"synthetic_pairs_only": "same_fixed_data"}
+            self.holdout_identity = synthetic_holdout()
+            self.input_identity = {"synthetic_pairs_only": "same_fixed_data", "l_anchors": 64, "holdout": self.holdout_identity}
+            self.test_contract_sha256, self.test_anchors = fingerprint(self.holdout_identity), 16
             self.teacher_identity = fingerprint(["synthetic_teacher", cfg["seed"]]) if cfg["uses_pairusa"] else None
             self.l = [dict(image_id=f"synthetic_l_{i}", positive_text=f"synthetic_pos_{i}", negative_text=f"synthetic_neg_{i}") for i in range(64)]
             self.u = [] if cfg["budget_percent"] == 100 else [dict(image_id=f"synthetic_u_{i}", pair_id=f"synthetic_up_{i}", text=f"synthetic_blind_{i}") for i in range(128)]
             self.val = [dict(image_id=f"synthetic_val_{i}", positive_text=f"synthetic_vpos_{i}", negative_text=f"synthetic_vneg_{i}") for i in range(400)]
             self.teacher_cost_seconds = 2.
+            self.teacher_accounting = synthetic_teacher_accounting(len(self.l)) if cfg["uses_pairusa"] else {}
+            self.teacher_resources = synthetic_teacher_resources() if cfg["uses_pairusa"] else None
 
         def attach(self, model, device):
             self.device = device
+
+        def load_test(self, selection):
+            return [dict(image_id=f"synthetic_test_{i}", positive_text=f"synthetic_tpos_{i}", negative_text=f"synthetic_tneg_{i}") for i in range(16)]
 
         @staticmethod
         def flatten(rows):
@@ -82,8 +92,8 @@ if torch is not None:
             sl = F.log_softmax((student@student.T).masked_fill(diagonal, -1e4)/student_temperature, dim=-1)
             return F.kl_div(sl, tp, reduction="batchmean")
 
-    def backend(method, seed=20260825, budget=10):
-        cfg = make_config("banana", budget, method, seed)
+    def backend(method, seed=20260825, budget=10, regime="native"):
+        cfg = make_config("banana", budget, method, seed, regime=regime)
         data = SyntheticPairs(cfg)
         return TorchBackend(cfg, data, model=TinyPair(seed, cfg["uses_pairusa"]))
 
@@ -215,6 +225,107 @@ class FairTorchTests(unittest.TestCase):
         record = runner.train_step()
         self.assertEqual(record["cost"]["u_pair_draws"], 0)
         self.assertEqual(record["cost"]["u_forward_pairs"], 0)
+
+    def test_shared_bce_all_nine_methods_match_and_do_not_use_ssl_early(self):
+        initials, endings = [], []
+        for method in ("bce", "pairusa", "ot", "pairusa_ot", "meanteacher", "fixmatch", "softmatch", "simmatch", "freematch"):
+            with self.subTest(method=method):
+                runner = backend(method, regime="shared_bce")
+                initials.append(runner.initial_common_hash)
+                if method == "simmatch":
+                    self.assertIsNone(runner.bank)
+                    self.assertEqual(runner.initial_cost["l_forward_pairs"], 0)
+                first = runner.train_step(); runner.train_step()
+                self.assertEqual(first["cost"]["u_forward_pairs"], 0)
+                self.assertEqual(first["unlabeled_weight"], 0.)
+                endings.append(runner.common_full_state_fingerprint())
+                if method == "freematch":
+                    self.assertEqual(runner.algorithm.updates, 0)
+        self.assertEqual(len(set(initials)), 1)
+        self.assertEqual(len(set(endings)), 1)
+
+    def test_shared_bce_mt_uses_branch_local_ramp_without_lr_restart(self):
+        runner = backend("meanteacher", regime="shared_bce")
+        runner.step = 1600  # Synthetic phase-boundary probe, not a formal completed warmup.
+        first = runner.train_step(); second = runner.train_step()
+        self.assertEqual(first["ssl_phase_step"], 1)
+        self.assertEqual(first["unlabeled_weight"], 0.)
+        self.assertEqual(second["unlabeled_weight"], 1/640)
+        self.assertEqual(first["lr_multiplier"], lr_multiplier(1601))
+
+    def test_shared_bce_sim_bank_primes_current_ema_at_branch_and_replays(self):
+        runner = backend("simmatch", regime="shared_bce")
+        runner.train_step(); runner.train_step()
+        warm = runner.snapshot()
+        self.assertIsNone(warm["algorithm"]["bank"])
+        cold = backend("simmatch", regime="shared_bce"); cold.restore(warm)
+        self.assertEqual(tree_digest(warm), tree_digest(cold.snapshot()))
+        runner.step = 1600  # Synthetic active-phase probe only.
+        expected_ema = runner.ema_state_fingerprint()
+        observed, prime_costs = [], []
+        original_prime = runner._prime_bank
+        def prime():
+            observed.append(runner.ema_state_fingerprint())
+            cost = original_prime()
+            prime_costs.append(cost)
+            return cost
+        with patch.object(runner, "_prime_bank", side_effect=prime):
+            record = runner.train_step()
+        self.assertEqual(observed, [expected_ema])
+        # A tiny CPU fixture can finish inside the Windows timer resolution.
+        self.assertEqual(record["cost"]["bank_initialization_seconds"], prime_costs[0][0])
+        self.assertEqual(record["cost"]["l_forward_pairs"], prime_costs[0][1]+64)
+        self.assertIsNotNone(runner.bank)
+        self.assertEqual(record["instance_loss"], 0.)
+        saved = runner.snapshot(); runner.train_step()
+        replay = backend("simmatch", regime="shared_bce"); replay.restore(saved); replay.train_step()
+        self.assertEqual(tree_digest(runner.snapshot()), tree_digest(replay.snapshot()))
+
+    def test_shared_bce_freematch_statistics_commit_only_in_ssl_phase(self):
+        runner = backend("freematch", regime="shared_bce")
+        runner.train_step()
+        self.assertEqual(runner.algorithm.updates, 0)
+        runner.step = 1600  # Synthetic SAT boundary probe, not a real 1600-step run.
+        runner.train_step()
+        self.assertEqual(runner.algorithm.updates, 1)
+        saved = runner.snapshot(); runner.train_step()
+        replay = backend("freematch", regime="shared_bce"); replay.restore(saved); replay.train_step()
+        self.assertEqual(tree_digest(runner.snapshot()), tree_digest(replay.snapshot()))
+
+    def test_test_uses_locked_validation_threshold_never_searches_on_test(self):
+        runner = backend("bce"); runner.train_step()
+        runner.step = 3200  # Synthetic inference-contract probe; no formal GPU completion.
+        metrics = runner.evaluate()[0]
+        budget = BudgetController()
+        for step in range(1, 3201):
+            budget.commit_success(step)
+            if budget.evaluation_due:
+                budget.observe_validation(dict(step=step, paired_accuracy=.75, auroc=.8,
+                                               evaluation_model="ema", validation_anchors=400, validation_pairs=800))
+        selection = dict(format="fair_test_selection_v3", config_sha256=fingerprint(runner.cfg), protocol_sha256=fingerprint(runner.p),
+                         checkpoint="terminal_ema", model="ema", step=3200, threshold=metrics["threshold"],
+                         validation_metrics_sha256=fingerprint(metrics), ema_state_sha256=runner.ema_state_fingerprint(),
+                         test_contract_sha256=runner.test_contract_sha256, budget_state=budget.state_dict())
+        before_test = runner.snapshot()
+        math_module = source_module("experiments/multicrop_itm_mt_fixmatch_v1/code/metrics.py")
+        with patch.object(math_module, "select_threshold", side_effect=AssertionError("No Test tuning")):
+            result = runner.evaluate_test(selection)
+        self.assertEqual(result["threshold"], metrics["threshold"])
+        self.assertEqual(result["evaluation_split"], "test")
+        self.assertEqual(runner.test_forward_pairs, 32)
+        with self.assertRaisesRegex(ValueError, "cannot refund"):
+            runner.restore(before_test)
+        replay = backend("bce"); replay.restore(runner.snapshot())
+        with self.assertRaisesRegex(ValueError, "consumed"):
+            replay.evaluate_test(selection)
+
+    def test_parameter_counts_are_measured_and_cpu_memory_not_fabricated(self):
+        runner = backend("pairusa")
+        resources = runner.resource_usage()
+        self.assertEqual(resources["student_trainable_parameters"], sum(v.numel() for v in runner.model.parameters() if v.requires_grad))
+        self.assertEqual(resources["student_total_parameters"], sum(v.numel() for v in runner.model.parameters()))
+        self.assertGreater(resources["method_specific_trainable_parameters"], 0)
+        self.assertIsNone(resources["peak_cuda_allocated_bytes"])
 
 
 if __name__ == "__main__":

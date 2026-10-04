@@ -65,15 +65,15 @@ class BudgetController:
         return new_best
 
     def state_dict(self):
-        return copy.deepcopy(dict(version="fair_budget_v2", policy=self.policy,
+        return copy.deepcopy(dict(version="fair_budget_v3", policy=self.policy,
                                   protocol_sha256=fingerprint(self.protocol), step=self.step,
                                   history=self.history, best_key=self.best_key, best_step=self.best_step,
                                   significant_best=self.significant_best, stale=self.stale,
                                   stop_reason=self.stop_reason))
 
     def load_state_dict(self, state):
-        if not isinstance(state, dict) or state.get("version") != "fair_budget_v2" or state.get("policy") != self.policy or state.get("protocol_sha256") != fingerprint(self.protocol):
-            raise ValueError("Historical/changed budget checkpoint is not fair-v2 resumable")
+        if not isinstance(state, dict) or state.get("version") != "fair_budget_v3" or state.get("policy") != self.policy or state.get("protocol_sha256") != fingerprint(self.protocol):
+            raise ValueError("Historical/changed budget checkpoint is not fair-v3 resumable")
         if type(state.get("step")) is not int or not 0 <= state["step"] <= self.cap:
             raise ValueError("Invalid successful-step count")
         replay = BudgetController(self.policy, self.protocol)
@@ -96,7 +96,10 @@ class ComputeLedger:
     """Measured cost, not a fabricated FLOP count or equal-compute assertion."""
     FIELDS = ("student_seconds", "validation_seconds", "setup_seconds", "teacher_upstream_seconds",
               "bank_initialization_seconds", "attempts", "failed_attempts", "l_pair_draws", "u_pair_draws",
-              "l_forward_pairs", "u_forward_pairs", "backward_pairs")
+              "l_forward_pairs", "u_forward_pairs", "backward_pairs", "resume_setup_seconds", "test_seconds",
+              "validation_ema_forward_pairs", "validation_student_forward_pairs", "test_forward_pairs",
+              "teacher_successful_updates", "teacher_validation_calls", "teacher_l_forward_pairs",
+              "teacher_backward_pairs", "teacher_validation_forward_pairs", "teacher_descriptor_pairs")
 
     def __init__(self):
         self.values = {k: 0.0 if k.endswith("seconds") else 0 for k in self.FIELDS}

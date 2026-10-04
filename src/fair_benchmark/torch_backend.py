@@ -19,6 +19,7 @@ from torch import nn
 from torch.nn import functional as F
 
 from .references import model_components, numerical_components, source_module
+from .evaluation import validate_test_selection
 from .spec import auxiliary_weights, fingerprint, load_protocol, lr_multiplier, sample_indices, validate_config
 
 
@@ -65,6 +66,9 @@ class TorchBackend:
         if data.cfg != config:
             raise ValueError("Training configuration and bound private inputs differ")
         self.input_identity = copy.deepcopy(data.input_identity)
+        self.holdout_identity = copy.deepcopy(data.holdout_identity)
+        self.test_contract_sha256, self.test_anchors = data.test_contract_sha256, data.test_anchors
+        self._test_consumed, self.test_forward_pairs = False, 0
         self.data, self.method, self.step = data, config["method"], 0
         self._poisoned = False
         self.simulation_only = model is not None
@@ -72,6 +76,7 @@ class TorchBackend:
             if not torch.cuda.is_available() or torch.cuda.device_count() != 1:
                 raise RuntimeError("One registered CUDA-visible GPU is required for real ALBEF training")
             self.device = torch.device("cuda:0")
+            torch.cuda.reset_peak_memory_stats(self.device)
             random.seed(config["seed"]); np.random.seed(config["seed"])
             torch.manual_seed(config["seed"]); torch.cuda.manual_seed_all(config["seed"])
             torch.backends.cuda.matmul.allow_tf32 = False
@@ -132,11 +137,18 @@ class TorchBackend:
         self._cost = None
         data.attach(self.model, self.device)
         self.teacher_identity = data.teacher_identity if config["uses_pairusa"] else None
-        bank_seconds, bank_pairs = self._prime_bank() if self.method == "simmatch" else (0., 0)
+        self.teacher_resources = copy.deepcopy(data.teacher_resources) if config["uses_pairusa"] else None
+        if self.method == "simmatch":
+            pairs = self.data.flatten(self.data.l)
+            self.pair_to_index = {p["pair_id"]: i for i, p in enumerate(pairs)}
+            if len(self.pair_to_index) != len(pairs):
+                raise ValueError("L pair-ID memory keys collide")
+            self.bank_labels = torch.tensor([p["label"] for p in pairs], dtype=torch.long, device=self.device)
+        bank_seconds, bank_pairs = self._prime_bank() if self.method == "simmatch" and not config["shared_bce_steps"] else (0., 0)
         self._synchronize()
         self.initial_cost = dict(setup_seconds=max(0., time.monotonic() - started - bank_seconds),
                                  bank_initialization_seconds=bank_seconds, l_forward_pairs=bank_pairs,
-                                 teacher_upstream_seconds=data.teacher_cost_seconds if config["uses_pairusa"] else 0.)
+                                 **(data.teacher_accounting if config["uses_pairusa"] else {}))
 
     @staticmethod
     def _named_state(model, names):
@@ -194,7 +206,7 @@ class TorchBackend:
                     bank_labels=None if self.bank_labels is None else self.bank_labels.detach().cpu().clone(),
                     pair_to_index=copy.deepcopy(self.pair_to_index), instance_warmup=self.instance_warmup)
 
-    def _restore_algorithm(self, state):
+    def _restore_algorithm(self, state, checkpoint_step=None):
         if state["instance_warmup"] != self.instance_warmup or state["pair_to_index"] != self.pair_to_index:
             raise ValueError("SimMatch memory membership/warmup changed")
         if self.algorithm is not None:
@@ -205,9 +217,12 @@ class TorchBackend:
         elif state["statistics"] is not None:
             raise ValueError("Unexpected algorithm statistics")
         if self.method == "simmatch":
-            if state["bank"] is None or state["bank"].shape != self.bank.shape or not torch.equal(state["bank_labels"], self.bank_labels.cpu()):
+            should_be_ready = not self.cfg["shared_bce_steps"] or (checkpoint_step is not None and checkpoint_step > self.cfg["shared_bce_steps"])
+            if checkpoint_step is not None and (state["bank"] is not None) != should_be_ready:
+                raise ValueError("SimMatch memory must initialize at the registered SSL phase boundary")
+            if not torch.equal(state["bank_labels"], self.bank_labels.cpu()) or (state["bank"] is not None and state["bank"].shape != (len(self.pair_to_index), self.p["algorithms"]["simmatch"]["proj_size"])):
                 raise ValueError("Complete SimMatch pair memory is required")
-            self.bank = state["bank"].to(self.device).clone()
+            self.bank = None if state["bank"] is None else state["bank"].to(self.device).clone()
         elif state["bank"] is not None or state["bank_labels"] is not None:
             raise ValueError("Unexpected memory bank")
 
@@ -238,6 +253,8 @@ class TorchBackend:
 
     def train_step(self):
         self._assert_healthy()
+        if self._test_consumed:
+            raise ValueError("Training must not continue after Test access")
         step = self.step + 1
         if step > self.cfg["target_steps"]:
             raise ValueError("Student budget exhausted")
@@ -247,12 +264,17 @@ class TorchBackend:
         lp = self.data.flatten(selected_l)
         labels = torch.tensor([p["label"] for p in lp], device=self.device)
         weights = auxiliary_weights(self.cfg, step, self.p)
-        use_u = self.method in ("meanteacher", "fixmatch", "softmatch", "simmatch", "freematch") or weights["ot"] > 0
-        original_algorithm = self._algorithm_state()
+        phase_step = step - self.cfg["shared_bce_steps"]
+        ssl_active = self.method in ("meanteacher", "fixmatch", "softmatch", "simmatch", "freematch") and phase_step > 0
+        use_u = ssl_active or weights["ot"] > 0
         start = time.monotonic()
         self._cost = dict(attempts=0, failed_attempts=0, l_forward_pairs=0, u_forward_pairs=0, backward_pairs=0)
         amp = self.device.type == "cuda"
         try:
+            if ssl_active and self.method == "simmatch" and self.bank is None:
+                bank_seconds, _ = self._prime_bank()
+                self._cost["bank_initialization_seconds"] = bank_seconds
+            original_algorithm = self._algorithm_state()
             for attempt in range(1, self.p["training"]["max_same_step_attempts"] + 1):
                 commit_started = False
                 # Release every previous attempt's activation/gradient surrogate
@@ -277,7 +299,8 @@ class TorchBackend:
                         weak, features = self._predict(teacher, uw, "u", amp, projected=self.method == "simmatch")
                         if self.method == "meanteacher":
                             target, mask = weak.sigmoid(), torch.ones(32, device=self.device)
-                            ramp = min(1., (step-1) / (self.p["algorithms"]["meanteacher"]["unsup_warm_up"] * self.cfg["target_steps"]))
+                            horizon = self.cfg["target_steps"] - self.cfg["shared_bce_steps"]
+                            ramp = min(1., (phase_step-1) / (self.p["algorithms"]["meanteacher"]["unsup_warm_up"] * horizon))
                         elif self.method == "fixmatch":
                             target, mask = self.parts["losses"].fixmatch_targets(weak, self.p["algorithms"]["fixmatch"]["p_cutoff"])
                         elif self.method == "softmatch":
@@ -287,7 +310,7 @@ class TorchBackend:
                             aligned = self.algorithm.align(self.parts["losses"].probabilities(weak))
                             target, mask, instance_target, _ = self.parts["soft_sim"].simmatch_targets(
                                 aligned, features, self.bank, self.bank_labels, s["T"], s["smoothing_alpha"],
-                                step <= self.instance_warmup, s["p_cutoff"])
+                                phase_step <= self.instance_warmup, s["p_cutoff"])
                             _, l_ema = self._predict(self.ema, lbatch, "l", amp, projected=True)
                         elif self.method == "freematch":
                             target, mask, proposed, _ = self.algorithm.propose(weak)
@@ -333,7 +356,7 @@ class TorchBackend:
                                     projected = F.normalize(self.model.sim_projection(raw).float(), dim=-1)
                                 s = self.p["algorithms"]["simmatch"]
                                 instance = self.parts["soft_sim"].instance_ce(projected, self.bank, instance_target[begin:begin+len(z)], s["T"]).sum()/32
-                                active = float(step > self.instance_warmup)
+                                active = float(phase_step > self.instance_warmup)
                                 loss = loss + s["in_loss_ratio"] * active * instance
                                 instance_total += float(instance.detach()) * active
                             if self.method == "freematch":
@@ -367,23 +390,25 @@ class TorchBackend:
                             for n, v in self.model.named_parameters():
                                 if v.requires_grad:
                                     ema_params[n].mul_(decay).add_(v, alpha=1-decay)
-                            if self.method == "simmatch":
+                            if ssl_active and self.method == "simmatch":
                                 indices = torch.tensor([self.pair_to_index[p["pair_id"]] for p in lp], device=self.device)
                                 self.bank[indices] = l_ema
-                        if self.method == "freematch":
+                        if ssl_active and self.method == "freematch":
                             self.algorithm.commit(proposed)
                         self._synchronize()
                     except BaseException:
                         self._poisoned = True
                         raise
                     self.step = step
-                    cost = {**self._cost, "student_seconds": time.monotonic()-start,
+                    cost = {**self._cost, "student_seconds": max(0., time.monotonic()-start-self._cost.get("bank_initialization_seconds", 0.)),
                             "l_pair_draws": 32, "u_pair_draws": len(selected_u)}
                     return dict(step=step, committed=True, cost=cost, physical_pairs=self.physical,
                                 supervised_loss=sup_total, unlabeled_loss=unsup_total,
                                 pairusa_loss=0. if usa is None else float(usa[3]),
                                 saf_loss=float(fairness), instance_loss=instance_total,
                                 auxiliary_weights=weights, lr_multiplier=lr_multiplier(step, self.p),
+                                ssl_phase_step=phase_step if ssl_active else None,
+                                unlabeled_weight=ramp if use_u else 0.,
                                 fp32_retry=not amp and self.device.type == "cuda")
                 except torch.cuda.OutOfMemoryError as error:
                     if commit_started:
@@ -425,10 +450,52 @@ class TorchBackend:
             metrics = metrics_module.binary_metrics(labels, probabilities, threshold)
             metrics.update(threshold_0_5=metrics_module.binary_metrics(labels, probabilities, .5),
                            paired_accuracy=float((logits.reshape(-1, 2)[:, 0] > logits.reshape(-1, 2)[:, 1]).float().mean()),
-                           evaluation_model=name, step=self.step, validation_anchors=len(self.data.val),
+                           evaluation_model=name, evaluation_split="validation", step=self.step, validation_anchors=len(self.data.val),
                            validation_pairs=len(labels))
             out.append(metrics)
         return tuple(out)
+
+    def ema_state_fingerprint(self):
+        self._assert_healthy()
+        return tree_digest(dict(ema=self._named_state(self.ema, self.names), config_sha256=fingerprint(self.cfg),
+                                input_identity_sha256=fingerprint(self.input_identity)))
+
+    def resource_usage(self):
+        common = sum(v.numel() for n, v in self.model.named_parameters() if n in self.common_names)
+        trainable = sum(v.numel() for v in self.model.parameters() if v.requires_grad)
+        return dict(student_total_parameters=sum(v.numel() for v in self.model.parameters()),
+                    student_trainable_parameters=trainable, common_trainable_parameters=common,
+                    method_specific_trainable_parameters=trainable-common,
+                    peak_cuda_allocated_bytes=torch.cuda.max_memory_allocated(self.device) if self.device.type == "cuda" else None,
+                    peak_cuda_reserved_bytes=torch.cuda.max_memory_reserved(self.device) if self.device.type == "cuda" else None,
+                    teacher=copy.deepcopy(self.teacher_resources))
+
+    @torch.no_grad()
+    def evaluate_test(self, selection):
+        self._assert_healthy()
+        validate_test_selection(selection, self.cfg, self.p, self.step,
+                                self.ema_state_fingerprint(), self.test_contract_sha256)
+        if self._test_consumed:
+            raise ValueError("Test access was already consumed")
+        self._test_consumed = True
+        rows = self.data.load_test(selection)
+        metrics_module = source_module("experiments/multicrop_itm_mt_fixmatch_v1/code/metrics.py")
+        self.ema.eval()
+        pieces = []
+        for i in range(0, len(rows), 8):
+            pairs = self.data.flatten(rows[i:i+8])
+            batch = self.data.batch(pairs, self.step, "validation", self.physical)
+            self.test_forward_pairs += len(pairs)
+            pieces.append(self._predict(self.ema, batch, "l")[0].cpu())
+        logits = torch.cat(pieces)
+        probabilities, labels = logits.sigmoid().numpy(), [1, 0]*len(rows)
+        # No threshold search, student comparison or model selection on Test.
+        metrics = metrics_module.binary_metrics(labels, probabilities, selection["threshold"])
+        metrics.update(threshold_0_5=metrics_module.binary_metrics(labels, probabilities, .5),
+                       paired_accuracy=float((logits.reshape(-1, 2)[:, 0] > logits.reshape(-1, 2)[:, 1]).float().mean()),
+                       evaluation_model="ema", evaluation_split="test", step=self.step,
+                       test_anchors=len(rows), test_pairs=len(labels))
+        return metrics
 
     def common_full_state_fingerprint(self):
         self._assert_healthy()
@@ -444,22 +511,27 @@ class TorchBackend:
 
     def snapshot(self):
         self._assert_healthy()
-        return dict(format="fair_torch_state_v2", config_sha256=fingerprint(self.cfg), step=self.step,
+        return dict(format="fair_torch_state_v3", config_sha256=fingerprint(self.cfg), step=self.step,
                     student=self._named_state(self.model, self.names), ema=self._named_state(self.ema, self.names),
                     optimizer=copy.deepcopy(self.opt.state_dict()), scaler=copy.deepcopy(self.scaler.state_dict()),
                     rng=self._rng(), physical=self.physical, algorithm=self._algorithm_state(),
                     initial_common_state_sha256=self.initial_common_hash, simulation_only=self.simulation_only,
-                    input_identity_sha256=fingerprint(self.input_identity), teacher_targets_sha256=self.teacher_identity)
+                    input_identity_sha256=fingerprint(self.input_identity), teacher_targets_sha256=self.teacher_identity,
+                    test_consumed=self._test_consumed, test_forward_pairs=self.test_forward_pairs)
 
     def restore(self, payload):
         expected = set(self.snapshot())
-        if set(payload) != expected or payload["format"] != "fair_torch_state_v2" or payload["config_sha256"] != fingerprint(self.cfg) or payload["initial_common_state_sha256"] != self.initial_common_hash or payload["simulation_only"] != self.simulation_only or payload["input_identity_sha256"] != fingerprint(self.input_identity) or payload["teacher_targets_sha256"] != self.teacher_identity:
+        if set(payload) != expected or payload["format"] != "fair_torch_state_v3" or payload["config_sha256"] != fingerprint(self.cfg) or payload["initial_common_state_sha256"] != self.initial_common_hash or payload["simulation_only"] != self.simulation_only or payload["input_identity_sha256"] != fingerprint(self.input_identity) or payload["teacher_targets_sha256"] != self.teacher_identity:
             raise ValueError("Backend fingerprint/initialization/complete-state mismatch")
         if type(payload["step"]) is not int or not 0 <= payload["step"] <= self.cfg["target_steps"] or payload["physical"] not in (16, 8, 4) or not finite_tree(payload):
             raise ValueError("Invalid/nonfinite complete state")
+        if type(payload["test_consumed"]) is not bool or type(payload["test_forward_pairs"]) is not int or not 0 <= payload["test_forward_pairs"] <= 2*self.test_anchors or (payload["test_forward_pairs"] and not payload["test_consumed"]):
+            raise ValueError("Invalid saved Test access state")
+        if self._test_consumed and (not payload["test_consumed"] or payload["test_forward_pairs"] < self.test_forward_pairs):
+            raise ValueError("Restoring an older snapshot cannot refund consumed Test access")
         if set(payload["algorithm"]) != set(self._algorithm_state()):
             raise ValueError("Incomplete method-specific state")
-        if self.method == "freematch" and payload["algorithm"]["statistics"]["updates"] != payload["step"]:
+        if self.method == "freematch" and payload["algorithm"]["statistics"]["updates"] != max(0, payload["step"]-self.cfg["shared_bce_steps"]):
             raise ValueError("SAT statistics must commit once per successful optimizer update")
         for model, key in ((self.model, "student"), (self.ema, "ema")):
             current = dict(model.named_parameters())
@@ -474,8 +546,9 @@ class TorchBackend:
                         v.copy_(payload[key][n].to(v))
         self.opt.load_state_dict(payload["optimizer"])
         self.scaler.load_state_dict(payload["scaler"])
-        self._restore_algorithm(payload["algorithm"])
+        self._restore_algorithm(payload["algorithm"], payload["step"])
         self.step, self.physical = payload["step"], payload["physical"]
+        self._test_consumed, self.test_forward_pairs = payload["test_consumed"], payload["test_forward_pairs"]
         random.setstate(payload["rng"]["python"]); np.random.set_state(payload["rng"]["numpy"])
         torch.set_rng_state(payload["rng"]["torch"])
         if self.device.type == "cuda":

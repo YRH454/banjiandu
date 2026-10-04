@@ -1,5 +1,7 @@
 # 公平比较 v2：统一总预算、模块消融、三个训练种子
 
+**归档说明：v2已被[公平比较v3](../pair_itm_fair_v3/README.md)替代。** 本页及原协议保留旧方案记录，下文的API/CLI描述对应[v2提交12f5264](https://github.com/YRH454/banjiandu/tree/12f5264a3a3c9752e06c27eaa9814f5087140c11)，不是当前默认实现。当前`src/fair_benchmark`与CLI只接受v3；v2断点/数据绑定不能续接或重新标作v3。v3改为终点EMA、独立Test及单独BCE起点补充；旧v2协议JSON字节不变，也没有将其计划变成已完成实验。
+
 这是**新的科学协议和共同训练代码**，不是对历史结果重新命名。没有启动新的训练，也没有真实 GPU passed、数值结果或完成声明。历史苹果/三作物消融、MT/FM、SoftMatch/SimMatch、FreeMatch 的冻结源码、配置、哈希清单和断点不修改、不接管、不续接。
 
 ## 固定主方案

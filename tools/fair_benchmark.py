@@ -21,19 +21,23 @@ def main():
     plan.add_argument("--dataset", choices=("apple", "cassava", "rice", "banana"))
     plan.add_argument("--budget", type=int, choices=(1, 5, 10, 20, 30, 100))
     plan.add_argument("--method")
+    plan.add_argument("--table", choices=("main", "ablation", "warmup_control"))
     plan.add_argument("--counts-only", action="store_true")
     commands.add_parser("source-fingerprint", help="Emit public code SHA256 mapping; not real execution admission")
     summary = commands.add_parser("summarize", help="Validate private result files, emit aggregate statistics only")
     summary.add_argument("results", nargs="+", type=Path)
+    summary.add_argument("--view", choices=("test", "validation_diagnostic"), default="test")
+    summary.add_argument("--table", choices=("main", "ablation", "warmup_control"))
     args = parser.parse_args()
     try:
         if args.command == "plan":
             output = make_plan(args.policy)
             rows = [r for r in output["runs"] if (args.dataset is None or r["dataset"] == args.dataset)
                     and (args.budget is None or r["budget_percent"] == args.budget)
-                    and (args.method is None or r["method"] == args.method)]
+                    and (args.method is None or r["method"] == args.method)
+                    and (args.table is None or args.table in r["roles"])]
             if not rows:
-                parser.error("No registered fair-v2 configuration matches")
+                parser.error("No registered fair-v3 configuration matches")
             output["runs"] = rows
             output["selected_configurations"] = len(rows)
             if args.counts_only:
@@ -41,7 +45,7 @@ def main():
         elif args.command == "source-fingerprint":
             output = source_fingerprint()
         else:
-            output = summarize_results([json.loads(p.read_text(encoding="utf-8")) for p in args.results])
+            output = summarize_results([json.loads(p.read_text(encoding="utf-8")) for p in args.results], view=args.view, table=args.table)
         print(json.dumps(output, ensure_ascii=False, indent=2, allow_nan=False))
     except (KeyError, TypeError, ValueError, OSError) as error:
         parser.error(str(error))

@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from fair_benchmark.data import BoundPairData, L_FIELDS, U_FIELDS, check_file, private_path
 from fair_benchmark.spec import fingerprint, load_protocol, make_config
+from fair_benchmark.budget import BudgetController
 
 
 def digest_bytes(value):
@@ -28,6 +29,7 @@ class SyntheticContract:
         self.assets = {}
         self.l = self.labelled("synthetic_l", 16)
         self.val = self.labelled("synthetic_v", 400)
+        self.test = self.labelled("synthetic_test", 16)
         self.u = []
         if budget != 100:
             for i in range(32):
@@ -38,7 +40,7 @@ class SyntheticContract:
                                    image_path=meta["path"], text=text, text_sha256=digest_bytes(text.encode())))
         model = self.entry("assets/ALBEF_4M.pth", b"synthetic invalid model, never loaded")
         tokenizer = self.entry("assets/tokenizer/vocab.txt", b"synthetic invalid tokenizer, never loaded")
-        self.binding = dict(version="fair_private_inputs_v2", protocol_sha256=fingerprint(load_protocol()),
+        self.binding = dict(version="fair_private_inputs_v3", protocol_sha256=fingerprint(load_protocol()),
                             data_construction_seed=20260825, datasets={}, model_assets=[model, tokenizer])
         self.publish()
 
@@ -74,13 +76,23 @@ class SyntheticContract:
     def publish(self, u_fields=U_FIELDS):
         l = self.csv_entry("synthetic_l.csv", self.l, L_FIELDS)
         val = self.csv_entry("synthetic_validation.csv", self.val, L_FIELDS)
+        test = self.csv_entry("synthetic_test.csv", self.test, L_FIELDS)
+        test_index = self.entry("synthetic_test_index.json", json.dumps([
+            dict(image_id=r["image_id"], image_path=r["image_relpath"], image_sha256=r["image_sha256"]) for r in self.test]).encode())
         budget = {"l": l}
         if self.cfg["budget_percent"] != 100:
             budget["u"] = self.csv_entry("synthetic_u.csv", self.u, u_fields)
         assets = self.entry("synthetic_asset_index.json", json.dumps(self.assets).encode())
         self.manifest = dict(token_guard=384, asset_index=assets,
-                             budgets={self.cfg["budget"]: budget}, validation=val)
+                             budgets={self.cfg["budget"]: budget}, validation=val, test=test,
+                             test_index=test_index, test_anchors=len(self.test))
         self.binding["datasets"]["banana"] = self.entry("synthetic_manifest.json", json.dumps(self.manifest).encode())
+        registration = dict(format="fair_holdout_registration_v3", protocol_sha256=fingerprint(load_protocol()),
+                            registered_before_training=True, test_previously_unused_for_training_or_selection=True,
+                            datasets={"banana": dict(origin="new_preregistered_holdout",
+                            dataset_manifest_sha256=self.binding["datasets"]["banana"]["sha256"], validation_sha256=val["sha256"],
+                            test_sha256=test["sha256"], test_index_sha256=test_index["sha256"], test_anchors=len(self.test))})
+        self.binding["holdout_registration"] = self.entry("synthetic_holdout_registration.json", json.dumps(registration).encode())
 
     def bind(self):
         return BoundPairData(self.root, self.cfg, self.binding)
@@ -195,6 +207,53 @@ class FairPrivateContractTests(unittest.TestCase):
             BoundPairData(self.fixture.root, self.fixture.cfg, changed)
         with self.assertRaisesRegex(ValueError, "outside the public repository"):
             BoundPairData(ROOT, self.fixture.cfg, self.fixture.binding)
+
+    def test_test_is_locked_before_completion_and_member_index_has_no_labels(self):
+        data = self.fixture.bind()
+        self.assertFalse(data._test_opened)
+        pairs = data.flatten(self.fixture.test)
+        with self.assertRaisesRegex(ValueError, "remain locked"):
+            data.batch(pairs, 1, "weak", 16)
+        with self.assertRaises(ValueError):
+            data.load_test({})
+        budget = BudgetController()
+        for step in range(1, 3201):
+            budget.commit_success(step)
+            if budget.evaluation_due:
+                budget.observe_validation(dict(step=step, paired_accuracy=.75, auroc=.8, evaluation_model="ema",
+                                               validation_anchors=400, validation_pairs=800))
+        selection = dict(format="fair_test_selection_v3", config_sha256=fingerprint(data.cfg), protocol_sha256=fingerprint(data.p),
+                         checkpoint="terminal_ema", model="ema", step=3200, threshold=.5,
+                         validation_metrics_sha256="6"*64, ema_state_sha256="7"*64,
+                         test_contract_sha256=data.test_contract_sha256, budget_state=budget.state_dict())
+        self.assertEqual(data.load_test(selection), self.fixture.test)
+        with self.assertRaisesRegex(ValueError, "already opened"):
+            data.load_test(selection)
+
+    def test_validation_cannot_be_relabelled_as_test(self):
+        self.fixture.test = copy.deepcopy(self.fixture.val[:16])
+        self.fixture.publish()
+        with self.assertRaisesRegex(ValueError, "Test overlaps"):
+            self.fixture.bind()
+
+    def test_test_image_aliases_and_unregistered_holdout_rejected(self):
+        row = self.fixture.test[0]; meta = self.fixture.assets[self.fixture.l[0]["image_id"]]
+        self.fixture.assets[row["image_id"]] = meta
+        row["image_relpath"], row["image_sha256"] = meta["path"], meta["sha256"]
+        self.fixture.publish()
+        with self.assertRaisesRegex(ValueError, "Test overlaps"):
+            self.fixture.bind()
+
+    def test_holdout_history_declaration_and_v2_binding_rejected(self):
+        changed = copy.deepcopy(self.fixture.binding); changed["version"] = "fair_private_inputs_v2"
+        with self.assertRaisesRegex(ValueError, "fair-v3 input binding"):
+            BoundPairData(self.fixture.root, self.fixture.cfg, changed)
+        entry = self.fixture.binding["holdout_registration"]
+        registration = json.loads((self.fixture.root / entry["path"]).read_text(encoding="utf-8"))
+        registration["test_previously_unused_for_training_or_selection"] = False
+        self.fixture.binding["holdout_registration"] = self.fixture.entry(entry["path"], json.dumps(registration).encode())
+        with self.assertRaisesRegex(ValueError, "previously unused preregistered holdout"):
+            self.fixture.bind()
 
 
 if __name__ == "__main__":
