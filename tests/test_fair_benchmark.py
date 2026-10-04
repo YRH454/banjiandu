@@ -160,7 +160,7 @@ class FairProtocolTests(unittest.TestCase):
             validate_config(cfg)
 
     def test_readonly_cli_needs_no_torch_and_generates_three_filtered_runs(self):
-        result = subprocess.run([sys.executable, "-B", str(ROOT / "tools/fair_benchmark.py"), "plan",
+        result = subprocess.run([sys.executable, "-B", str(ROOT / "tools/fair_benchmark.py"), "--version", "v3", "plan",
                                  "--dataset", "banana", "--budget", "10", "--method", "pairusa_ot"],
                                 capture_output=True, text=True, timeout=30)
         self.assertEqual(result.returncode, 0, result.stderr)

@@ -15,14 +15,16 @@ import torch
 from PIL import Image
 from torch.nn import functional as F
 
-from .data import private_path
+from .data import BoundPairData, private_path
 from .references import model_components, source_module
-from .spec import fingerprint, load_protocol, validate_config
+from .spec import fingerprint
 
 
 def prepare_teacher_targets(config, data, protocol=None):
-    p = load_protocol() if protocol is None else protocol
-    validate_config(config, p)
+    if not isinstance(data, BoundPairData):
+        raise ValueError("Teacher preparation requires hash-bound private data")
+    p = data.load_protocol() if protocol is None else protocol
+    data.validate_config(config, p)
     if data.cfg != config or fingerprint(data.p) != fingerprint(p):
         raise ValueError("Teacher configuration and bound private inputs differ")
     if not config["uses_pairusa"] or not torch.cuda.is_available() or torch.cuda.device_count() != 1:
@@ -136,7 +138,7 @@ def prepare_teacher_targets(config, data, protocol=None):
                      descriptor_parameters=descriptor_parameters,
                      peak_cuda_allocated_bytes=torch.cuda.max_memory_allocated(device),
                      peak_cuda_reserved_bytes=torch.cuda.max_memory_reserved(device))
-    return dict(format="fair_pairusa_targets_v3",
+    return dict(format=data.TEACHER_FORMAT,
                 identity=dict(dataset=config["dataset"], budget=config["budget"], seed=seed,
                               l_sha256=data.manifest["budgets"][config["budget"]]["l"]["sha256"],
                               validation_sha256=data.manifest["validation"]["sha256"], protocol_sha256=fingerprint(p)),

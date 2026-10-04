@@ -59,10 +59,15 @@ def finite_tree(value):
 
 
 class TorchBackend:
+    STATE_FORMAT = "fair_torch_state_v3"
+    load_protocol = staticmethod(load_protocol)
+    validate_config = staticmethod(validate_config)
+    validate_test_selection = staticmethod(validate_test_selection)
+
     def __init__(self, config, data, protocol=None, model=None):
         started = time.monotonic()
-        self.p = load_protocol() if protocol is None else copy.deepcopy(protocol)
-        self.cfg = config = validate_config(copy.deepcopy(config), self.p)
+        self.p = self.load_protocol() if protocol is None else copy.deepcopy(protocol)
+        self.cfg = config = self.validate_config(copy.deepcopy(config), self.p)
         if data.cfg != config:
             raise ValueError("Training configuration and bound private inputs differ")
         self.input_identity = copy.deepcopy(data.input_identity)
@@ -144,7 +149,7 @@ class TorchBackend:
             if len(self.pair_to_index) != len(pairs):
                 raise ValueError("L pair-ID memory keys collide")
             self.bank_labels = torch.tensor([p["label"] for p in pairs], dtype=torch.long, device=self.device)
-        bank_seconds, bank_pairs = self._prime_bank() if self.method == "simmatch" and not config["shared_bce_steps"] else (0., 0)
+        bank_seconds, bank_pairs = self._prime_bank() if self._bank_ready_at(0) else (0., 0)
         self._synchronize()
         self.initial_cost = dict(setup_seconds=max(0., time.monotonic() - started - bank_seconds),
                                  bank_initialization_seconds=bank_seconds, l_forward_pairs=bank_pairs,
@@ -153,6 +158,18 @@ class TorchBackend:
     @staticmethod
     def _named_state(model, names):
         return {n: v.detach().cpu().clone() for n, v in model.named_parameters() if n in names}
+
+    def _bank_ready_at(self, step):
+        return self.method == "simmatch" and (not self.cfg["shared_bce_steps"] or step > self.cfg["shared_bce_steps"])
+
+    def _sample_indices(self, step):
+        return sample_indices(self.cfg, step, len(self.data.l), len(self.data.u), self.p)
+
+    def _lr_multiplier(self, step):
+        return lr_multiplier(step, self.p)
+
+    def _auxiliary_weights(self, step):
+        return auxiliary_weights(self.cfg, step, self.p)
 
     def _assert_healthy(self):
         if self._poisoned:
@@ -217,7 +234,7 @@ class TorchBackend:
         elif state["statistics"] is not None:
             raise ValueError("Unexpected algorithm statistics")
         if self.method == "simmatch":
-            should_be_ready = not self.cfg["shared_bce_steps"] or (checkpoint_step is not None and checkpoint_step > self.cfg["shared_bce_steps"])
+            should_be_ready = self._bank_ready_at(checkpoint_step) if checkpoint_step is not None else None
             if checkpoint_step is not None and (state["bank"] is not None) != should_be_ready:
                 raise ValueError("SimMatch memory must initialize at the registered SSL phase boundary")
             if not torch.equal(state["bank_labels"], self.bank_labels.cpu()) or (state["bank"] is not None and state["bank"].shape != (len(self.pair_to_index), self.p["algorithms"]["simmatch"]["proj_size"])):
@@ -258,12 +275,12 @@ class TorchBackend:
         step = self.step + 1
         if step > self.cfg["target_steps"]:
             raise ValueError("Student budget exhausted")
-        li, ui = sample_indices(self.cfg, step, len(self.data.l), len(self.data.u), self.p)
+        li, ui = self._sample_indices(step)
         selected_l = [self.data.l[i] for i in li]
         selected_u = [self.data.u[i] for i in ui]
         lp = self.data.flatten(selected_l)
         labels = torch.tensor([p["label"] for p in lp], device=self.device)
-        weights = auxiliary_weights(self.cfg, step, self.p)
+        weights = self._auxiliary_weights(step)
         phase_step = step - self.cfg["shared_bce_steps"]
         ssl_active = self.method in ("meanteacher", "fixmatch", "softmatch", "simmatch", "freematch") and phase_step > 0
         use_u = ssl_active or weights["ot"] > 0
@@ -325,8 +342,8 @@ class TorchBackend:
                             ramp = weights["ot"]
                     usa = self._usa_gradient(lbatch, selected_l, step, amp) if weights["pairusa"] > 0 else None
                     for group in self.opt.param_groups:
-                        group["lr"] = group["base_lr"] * lr_multiplier(step, self.p)
-                    sup_total, unsup_total, instance_total = 0., 0., 0.
+                        group["lr"] = group["base_lr"] * self._lr_multiplier(step)
+                    sup_total, unsup_total, instance_total, instance_raw_total = 0., 0., 0., 0.
                     for begin, chunk in self._pieces(lbatch):
                         z, raw = self._forward(self.model, chunk, "l", amp)
                         loss = F.binary_cross_entropy_with_logits(z.float(), labels[begin:begin+len(z)], reduction="sum") / 32
@@ -358,6 +375,7 @@ class TorchBackend:
                                 instance = self.parts["soft_sim"].instance_ce(projected, self.bank, instance_target[begin:begin+len(z)], s["T"]).sum()/32
                                 active = float(phase_step > self.instance_warmup)
                                 loss = loss + s["in_loss_ratio"] * active * instance
+                                instance_raw_total += float(instance.detach())
                                 instance_total += float(instance.detach()) * active
                             if self.method == "freematch":
                                 torch.testing.assert_close(z.float(), strong[begin:begin+len(z)], rtol=0, atol=0)
@@ -406,7 +424,17 @@ class TorchBackend:
                                 supervised_loss=sup_total, unlabeled_loss=unsup_total,
                                 pairusa_loss=0. if usa is None else float(usa[3]),
                                 saf_loss=float(fairness), instance_loss=instance_total,
-                                auxiliary_weights=weights, lr_multiplier=lr_multiplier(step, self.p),
+                                auxiliary_weights=weights, lr_multiplier=self._lr_multiplier(step),
+                                losses_raw=dict(bce=sup_total, unlabeled=unsup_total,
+                                                pairusa=0. if usa is None else float(usa[3]),
+                                                instance=instance_raw_total, saf=float(fairness)),
+                                losses_weighted=dict(bce=sup_total, unlabeled=unsup_total*ramp*self.p["training"]["lambda_u"],
+                                                     pairusa=0. if usa is None else float(usa[3])*weights["pairusa"],
+                                                     instance=instance_total*self.p["algorithms"]["simmatch"]["in_loss_ratio"],
+                                                     saf=float(fairness)*self.p["algorithms"]["freematch"]["ent_loss_ratio"]),
+                                accepted_u_pairs=0 if mask is None else int((mask > 0).sum()),
+                                mean_u_mask_weight=0. if mask is None else float(mask.float().mean()),
+                                gradient_norm_before_clip=float(norm),
                                 ssl_phase_step=phase_step if ssl_active else None,
                                 unlabeled_weight=ramp if use_u else 0.,
                                 fp32_retry=not amp and self.device.type == "cuda")
@@ -473,7 +501,7 @@ class TorchBackend:
     @torch.no_grad()
     def evaluate_test(self, selection):
         self._assert_healthy()
-        validate_test_selection(selection, self.cfg, self.p, self.step,
+        self.validate_test_selection(selection, self.cfg, self.p, self.step,
                                 self.ema_state_fingerprint(), self.test_contract_sha256)
         if self._test_consumed:
             raise ValueError("Test access was already consumed")
@@ -511,7 +539,7 @@ class TorchBackend:
 
     def snapshot(self):
         self._assert_healthy()
-        return dict(format="fair_torch_state_v3", config_sha256=fingerprint(self.cfg), step=self.step,
+        return dict(format=self.STATE_FORMAT, config_sha256=fingerprint(self.cfg), step=self.step,
                     student=self._named_state(self.model, self.names), ema=self._named_state(self.ema, self.names),
                     optimizer=copy.deepcopy(self.opt.state_dict()), scaler=copy.deepcopy(self.scaler.state_dict()),
                     rng=self._rng(), physical=self.physical, algorithm=self._algorithm_state(),
@@ -521,7 +549,7 @@ class TorchBackend:
 
     def restore(self, payload):
         expected = set(self.snapshot())
-        if set(payload) != expected or payload["format"] != "fair_torch_state_v3" or payload["config_sha256"] != fingerprint(self.cfg) or payload["initial_common_state_sha256"] != self.initial_common_hash or payload["simulation_only"] != self.simulation_only or payload["input_identity_sha256"] != fingerprint(self.input_identity) or payload["teacher_targets_sha256"] != self.teacher_identity:
+        if set(payload) != expected or payload["format"] != self.STATE_FORMAT or payload["config_sha256"] != fingerprint(self.cfg) or payload["initial_common_state_sha256"] != self.initial_common_hash or payload["simulation_only"] != self.simulation_only or payload["input_identity_sha256"] != fingerprint(self.input_identity) or payload["teacher_targets_sha256"] != self.teacher_identity:
             raise ValueError("Backend fingerprint/initialization/complete-state mismatch")
         if type(payload["step"]) is not int or not 0 <= payload["step"] <= self.cfg["target_steps"] or payload["physical"] not in (16, 8, 4) or not finite_tree(payload):
             raise ValueError("Invalid/nonfinite complete state")

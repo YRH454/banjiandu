@@ -2,7 +2,7 @@
 
 本仓库保存苹果与三作物消融，以及 Mean Teacher、FixMatch、SoftMatch、SimMatch、FreeMatch 的**代码和实验定义**。不包含图片、caption、训练/验证配对表、样本 ID、模型权重、教师目标、预测分数或原始实验结果。远端是公开仓库；请勿将这些输入或输出直接放入 Git。上传边界见 [`docs/PUBLIC_UPLOAD_POLICY.md`](docs/PUBLIC_UPLOAD_POLICY.md)。
 
-新增独立[公平比较fair-v3](experiments/pair_itm_fair_v3/README.md)：训练种子`20260825/20260826/20260827`，各方法总计3200成功更新，主要模型统一为**终点EMA**；四组消融采用1600步BCE+1600步模块对照，另注册四作物1%/10%的统一BCE起点SSL补充。独立Test前冻结模型与Validation阈值，Validation-best仅诊断，自适应结果单独汇总。含完整断点、教师/学生成本、参数/显存、三种子统计及只读计划；去重684个固定学生配置是计划数，不是完工数。**未启动新训练或通过真实GPU准入，不修改/续接历史实验；合法且此前未使用的独立Test及私有一次性访问日志仍需另行准备。等学生步数不等于等算力。** [v2](experiments/pair_itm_fair_v2/README.md)保留为被替代的协议，不与v3混表或续接断点。
+默认新方案为[BCE平台期两阶段v4](experiments/pair_itm_plateau_v4/README.md)：BCE按Validation平台期自适应停止，主实验与消融从同一终点完整状态出发，第二阶段保留BCE并加入模块损失，独立自适应停止；另含BCE继续训练和每模块**等追加步数BCE**，分离继续训练收益与模块增量。训练种子`20260825/20260826/20260827`，终点EMA及Validation阈值先冻结，再一次性独立Test；到安全上限不冒称收敛，BCE未到平台期不自动分叉。1128逻辑配置（72父格/564适配/492匹配）是计划数。**未启动服务器训练、未通过真实GPU准入；合法独立Test及私有一次访问日志须另备，不改历史数据/结果/checkpoint，不声明等算力。** [v3](experiments/pair_itm_fair_v3/README.md)固定3200步及[v2](experiments/pair_itm_fair_v2/README.md)保留兼容；旧v3 CLI显式用`--version v3`，不与v4混表或续接断点。
 
 2026-10-04三机补充：[实验/论文配置索引](docs/THREE_HOST_EXPERIMENTS_20261004.md)、[126个唯一科学配置视图](docs/experiment_catalog_20261004.json)、[源码版本/hash映射](docs/source_manifest_three_hosts_20261004.json)。新增本机66消融、原Windows+本机唯一40 MT/FM、Linux20 FreeMatch；126是计划配置数，不是完工数。可用 `python tools/find_experiment_config.py --crop banana --method fixmatch --budget 10` 查到具体配置和代码。原SoftMatch/SimMatch自管服务器40不纳入本次结果收集，已有代码及提交原样保留。
 
@@ -30,7 +30,7 @@
 
 这是**本机历史实现的源码归档**，不是跨机器开箱即跑的软件包。历史 Python 源码和计划保留了原运行环境的绝对路径；配置、输入与断点的来源哈希相互绑定。擅自替换路径、修改旧配置或复写断点会破坏旧实验的来源核验。另见 [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) 和 [`docs/DATA.md`](docs/DATA.md)。
 
-基础 ALBEF 权重、BERT tokenizer 和冻结的输入表需由使用者在获得相应权利后另行准备，并校验哈希。仓库不提供凭空再生成旧实验数值的承诺。历史归档没有独立Test结果；fair-v3虽提供独立Test评价接口，但不附实际Test数据、真实结果或自动部署。
+基础 ALBEF 权重、BERT tokenizer 和冻结的输入表需由使用者在获得相应权利后另行准备，并校验哈希。仓库不提供凭空再生成旧实验数值的承诺。历史归档没有独立Test结果；v3/v4虽提供独立Test评价接口，但不附实际Test数据、真实结果或自动部署。
 
 主实验历史训练种子为 `20260825`。新增两种子仅改变训练随机流；固定的数据构造和负例配对仍来自 `20260825`。固定 seed 不代表跨硬件逐位一致。
 

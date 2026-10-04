@@ -48,13 +48,20 @@ def check_file(root, entry):
 
 class BoundPairData:
     """No data copying, pseudo labels in U, historical owners or old queue imports."""
+    BINDING_FORMAT = "fair_private_inputs_v3"
+    HOLDOUT_FORMAT = "fair_holdout_registration_v3"
+    TEACHER_FORMAT = "fair_pairusa_targets_v3"
+    load_protocol = staticmethod(load_protocol)
+    validate_config = staticmethod(validate_config)
+    validate_test_selection = staticmethod(validate_test_selection)
+
     def __init__(self, root, config, binding, protocol=None):
         self.root = Path(root).resolve()
-        self.p = load_protocol() if protocol is None else copy.deepcopy(protocol)
-        self.cfg = config = validate_config(copy.deepcopy(config), self.p)
+        self.p = self.load_protocol() if protocol is None else copy.deepcopy(protocol)
+        self.cfg = config = self.validate_config(copy.deepcopy(config), self.p)
         binding = copy.deepcopy(binding)
-        if binding.get("version") != "fair_private_inputs_v3" or binding.get("protocol_sha256") != fingerprint(self.p) or binding.get("data_construction_seed") != self.p["data_construction_seed"]:
-            raise ValueError("A new trusted fair-v3 input binding is required")
+        if binding.get("version") != self.BINDING_FORMAT or binding.get("protocol_sha256") != fingerprint(self.p) or binding.get("data_construction_seed") != self.p["data_construction_seed"]:
+            raise ValueError("A new trusted fair-v3 input binding or matching newer version is required")
         if self.root.is_relative_to(ROOT):
             raise ValueError("Keep actual data/assets/teacher/output workspace outside the public repository")
         crop, budget = config["dataset"], config["budget"]
@@ -127,7 +134,7 @@ class BoundPairData:
         expected_holdout = dict(dataset_manifest_sha256=manifest_entry["sha256"], validation_sha256=self.manifest["validation"]["sha256"],
                                 test_sha256=self.manifest["test"]["sha256"], test_index_sha256=self.manifest["test_index"]["sha256"], test_anchors=self.test_anchors)
         registered = registration["datasets"][crop]
-        if registration.get("format") != "fair_holdout_registration_v3" or registration.get("protocol_sha256") != fingerprint(self.p) or registration.get("registered_before_training") is not True or registration.get("test_previously_unused_for_training_or_selection") is not True or registered.get("origin") not in ("official_holdout", "new_preregistered_holdout") or {k: registered[k] for k in expected_holdout} != expected_holdout:
+        if registration.get("format") != self.HOLDOUT_FORMAT or registration.get("protocol_sha256") != fingerprint(self.p) or registration.get("registered_before_training") is not True or registration.get("test_previously_unused_for_training_or_selection") is not True or registered.get("origin") not in ("official_holdout", "new_preregistered_holdout") or {k: registered[k] for k in expected_holdout} != expected_holdout:
             raise ValueError("A trusted, previously unused preregistered holdout is required; do not relabel Validation")
         self.holdout_identity = {**expected_holdout, "registration_sha256": registration_entry["sha256"]}
         self.test_contract_sha256 = fingerprint(self.holdout_identity)
@@ -188,7 +195,7 @@ class BoundPairData:
             expected = dict(dataset=self.cfg["dataset"], budget=self.cfg["budget"], seed=self.cfg["seed"],
                             l_sha256=self.manifest["budgets"][self.cfg["budget"]]["l"]["sha256"],
                             validation_sha256=self.manifest["validation"]["sha256"], protocol_sha256=fingerprint(self.p))
-            if artifact.get("format") != "fair_pairusa_targets_v3" or artifact["identity"] != expected or artifact["image_ids"] != [r["image_id"] for r in self.l] or artifact["test_evaluated"] is not False or artifact["training_labels_source"] != "this_cell_L_only":
+            if artifact.get("format") != self.TEACHER_FORMAT or artifact["identity"] != expected or artifact["image_ids"] != [r["image_id"] for r in self.l] or artifact["test_evaluated"] is not False or artifact["training_labels_source"] != "this_cell_L_only":
                 raise ValueError("Teacher belongs to another seed/input/budget/protocol")
             targets = artifact["targets"]
             if tuple(targets.shape) != (len(self.l), 2, 256) or not bool(torch.isfinite(targets).all()):
@@ -229,7 +236,7 @@ class BoundPairData:
     def load_test(self, selection):
         if not isinstance(selection, dict) or type(selection.get("step")) is not int:
             raise ValueError("Complete terminal selection is required before Test")
-        validate_test_selection(selection, self.cfg, self.p, selection["step"], test_hash=self.test_contract_sha256)
+        self.validate_test_selection(selection, self.cfg, self.p, selection["step"], test_hash=self.test_contract_sha256)
         if self._test_opened:
             raise ValueError("Test was already opened for this bound session")
         self._test_opened = True  # Failed access is not a free second selection opportunity.

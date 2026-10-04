@@ -14,9 +14,19 @@ from .spec import VERSION, fingerprint, is_sha256, load_protocol, validate_confi
 
 
 class FairTrainer:
+    STATE_FORMAT = "fair_itm_full_v3"
+    SELECTION_FORMAT = "fair_test_selection_v3"
+    VERSION = VERSION
+    load_protocol = staticmethod(load_protocol)
+    validate_config = staticmethod(validate_config)
+    validate_test_selection = staticmethod(validate_test_selection)
+
+    def _new_budget(self):
+        return BudgetController(self.config["policy"], self.protocol)
+
     def __init__(self, config, backend, provenance, protocol=None):
-        self.protocol = load_protocol() if protocol is None else copy.deepcopy(protocol)
-        self.config = validate_config(copy.deepcopy(config), self.protocol)
+        self.protocol = self.load_protocol() if protocol is None else copy.deepcopy(protocol)
+        self.config = self.validate_config(copy.deepcopy(config), self.protocol)
         if backend.cfg != self.config or provenance.get("inputs") != backend.input_identity:
             raise ValueError("Backend configuration/private inputs and recorded provenance differ")
         if type(backend.simulation_only) is not bool or not is_sha256(backend.initial_common_hash):
@@ -25,7 +35,7 @@ class FairTrainer:
             raise ValueError("Same-cell teacher identity must be recorded for USA methods only")
         self.backend = backend
         self.provenance = copy.deepcopy(provenance)
-        self.budget = BudgetController(config["policy"], self.protocol)
+        self.budget = self._new_budget()
         self.cost = ComputeLedger()
         self.warmup_fingerprint = None
         self.last_validation = None
@@ -75,7 +85,7 @@ class FairTrainer:
             raise ValueError("Terminal Validation and registered history differ")
 
     def _validate_frozen_selection(self):
-        validate_test_selection(self.test_selection, self.config, self.protocol, self.budget.step,
+        self.validate_test_selection(self.test_selection, self.config, self.protocol, self.budget.step,
                                 self.backend.ema_state_fingerprint(), self.backend.test_contract_sha256)
         if self.test_selection["budget_state"] != self.budget.state_dict() or self.test_selection["validation_metrics_sha256"] != fingerprint(self.last_validation["ema"]) or self.test_selection["threshold"] != self.last_validation["ema"]["threshold"]:
             raise ValueError("Frozen selection differs from terminal Validation/budget")
@@ -83,7 +93,7 @@ class FairTrainer:
     def seal_for_test(self):
         self._require_training_complete()
         if self.test_selection is None:
-            self.test_selection = dict(format="fair_test_selection_v3", config_sha256=fingerprint(self.config),
+            self.test_selection = dict(format=self.SELECTION_FORMAT, config_sha256=fingerprint(self.config),
                                        protocol_sha256=fingerprint(self.protocol), checkpoint="terminal_ema", model="ema",
                                        step=self.budget.step, threshold=self.last_validation["ema"]["threshold"],
                                        validation_metrics_sha256=fingerprint(self.last_validation["ema"]),
@@ -124,7 +134,7 @@ class FairTrainer:
         return resources
 
     def snapshot(self):
-        return dict(format="fair_itm_full_v3", config_sha256=fingerprint(self.config),
+        return dict(format=self.STATE_FORMAT, config_sha256=fingerprint(self.config),
                     protocol_sha256=fingerprint(self.protocol), provenance=copy.deepcopy(self.provenance),
                     budget=self.budget.state_dict(), compute=self.cost.state_dict(),
                     warmup_common_full_state_sha256=self.warmup_fingerprint,
@@ -133,8 +143,8 @@ class FairTrainer:
                     test_metrics=copy.deepcopy(self.test_metrics), resources=self._resource_usage())
 
     def restore(self, payload):
-        keys = {"format", "config_sha256", "protocol_sha256", "provenance", "budget", "compute", "warmup_common_full_state_sha256", "backend", "last_validation", "test_selection", "test_attempted", "test_metrics", "resources"}
-        if set(payload) != keys or payload["format"] != "fair_itm_full_v3" or payload["config_sha256"] != fingerprint(self.config) or payload["protocol_sha256"] != fingerprint(self.protocol) or payload["provenance"] != self.provenance:
+        keys = set(self.snapshot())
+        if set(payload) != keys or payload["format"] != self.STATE_FORMAT or payload["config_sha256"] != fingerprint(self.config) or payload["protocol_sha256"] != fingerprint(self.protocol) or payload["provenance"] != self.provenance:
             raise ValueError("Incomplete/historical/changed-source checkpoint cannot resume fair-v3")
         if self.test_selection is not None and payload["test_selection"] != self.test_selection:
             raise ValueError("A sealed Test selection cannot be replaced in this session")
@@ -142,7 +152,7 @@ class FairTrainer:
             raise ValueError("Restoring an older snapshot cannot refund consumed Test intent")
         if self.test_metrics is not None and payload["test_metrics"] != self.test_metrics:
             raise ValueError("A completed Test result cannot be discarded on resume")
-        budget = BudgetController(self.config["policy"], self.protocol)
+        budget = self._new_budget()
         budget.load_state_dict(payload["budget"])
         cost = ComputeLedger()
         cost.load_state_dict(payload["compute"])
@@ -171,7 +181,7 @@ class FairTrainer:
         if type(consumed) is not bool or type(forwards) is not int or not 0 <= forwards <= 2*self.backend.test_anchors or (not attempted and (consumed or forwards or cost.values["test_seconds"])) or (forwards and not consumed) or forwards != cost.values["test_forward_pairs"]:
             raise ValueError("Backend Test access and durable intent/accounting disagree")
         if selection is not None:
-            validate_test_selection(selection, self.config, self.protocol, budget.step, test_hash=self.backend.test_contract_sha256)
+            self.validate_test_selection(selection, self.config, self.protocol, budget.step, test_hash=self.backend.test_contract_sha256)
             if selection["budget_state"] != budget.state_dict() or selection["validation_metrics_sha256"] != fingerprint(last["ema"]) or selection["threshold"] != last["ema"]["threshold"]:
                 raise ValueError("Selection does not match the terminal Validation and budget")
         if metrics is not None:
@@ -208,7 +218,7 @@ class FairTrainer:
     def result(self):
         self._require_training_complete()
         tested = self.test_metrics is not None
-        return dict(version=VERSION, run_id=self.config["run_id"],
+        return dict(version=self.VERSION, run_id=self.config["run_id"],
                     state="completed" if tested else ("test_intent_pending_or_failed" if self.test_attempted else "awaiting_test"),
                     dataset=self.config["dataset"], budget=self.config["budget"],
                     method=self.config["method"], seed=self.config["seed"], policy=self.config["policy"],
