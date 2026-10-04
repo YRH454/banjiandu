@@ -1,37 +1,110 @@
-# 图文匹配实验与论文配置索引
+# 图文匹配实验：BCE 平台期与半监督学习
 
-本仓库保存苹果与三作物消融，以及 Mean Teacher、FixMatch、SoftMatch、SimMatch、FreeMatch 的**代码和实验定义**。不包含图片、caption、训练/验证配对表、样本 ID、模型权重、教师目标、预测分数或原始实验结果。远端是公开仓库；请勿将这些输入或输出直接放入 Git。上传边界见 [`docs/PUBLIC_UPLOAD_POLICY.md`](docs/PUBLIC_UPLOAD_POLICY.md)。
+面向苹果、木薯、水稻和香蕉的图文匹配二分类实验，包含 BCE、Pair-USA、OT，以及 Mean Teacher、FixMatch、SoftMatch、SimMatch、FreeMatch 的统一训练与对照代码。这里的 BCE 判断图像与文本是否匹配，不是病害多标签分类。
 
-默认新方案为[BCE平台期两阶段v4](experiments/pair_itm_plateau_v4/README.md)：BCE按Validation平台期自适应停止，主实验与消融从同一终点完整状态出发，第二阶段保留BCE并加入模块损失，独立自适应停止；另含BCE继续训练和每模块**等追加步数BCE**，分离继续训练收益与模块增量。训练种子`20260825/20260826/20260827`，终点EMA及Validation阈值先冻结，再一次性独立Test；到安全上限不冒称收敛，BCE未到平台期不自动分叉。1128逻辑配置（72父格/564适配/492匹配）是计划数。**未启动服务器训练、未通过真实GPU准入；合法独立Test及私有一次访问日志须另备，不改历史数据/结果/checkpoint，不声明等算力。** [v3](experiments/pair_itm_fair_v3/README.md)固定3200步及[v2](experiments/pair_itm_fair_v2/README.md)保留兼容；旧v3 CLI显式用`--version v3`，不与v4混表或续接断点。
+仓库保存源码与实验定义；图片、caption、配对表、模型权重、教师目标、预测、日志和实验结果保存在仓库外。上传规则见 [`docs/PUBLIC_UPLOAD_POLICY.md`](docs/PUBLIC_UPLOAD_POLICY.md)。
 
-2026-10-04三机补充：[实验/论文配置索引](docs/THREE_HOST_EXPERIMENTS_20261004.md)、[126个唯一科学配置视图](docs/experiment_catalog_20261004.json)、[源码版本/hash映射](docs/source_manifest_three_hosts_20261004.json)。新增本机66消融、原Windows+本机唯一40 MT/FM、Linux20 FreeMatch；126是计划配置数，不是完工数。可用 `python tools/find_experiment_config.py --crop banana --method fixmatch --budget 10` 查到具体配置和代码。原SoftMatch/SimMatch自管服务器40不纳入本次结果收集，已有代码及提交原样保留。
+## 默认实验配置
 
-新增 [`experiments/multicrop_itm_soft_simmatch_v1`](experiments/multicrop_itm_soft_simmatch_v1)：苹果、木薯、水稻、香蕉 × 五预算 × 两算法。单种子、仅验证集、SoftMatch2200步 / SimMatch2400步，非等算力；是ITM适配，不是病害分类，也不是官方分类任务精确复现。源码含原始与加速执行层，复现限制详见该目录。下方 G1–G4 定义保持原样，不与这轮算法表混合。
+当前默认协议为 **`pair_itm_plateau_v4`**：[公开配置](experiments/pair_itm_plateau_v4/configs/protocol.public.json) · [完整训练说明](experiments/pair_itm_plateau_v4/README.md)。模型、优化器、增强、停止规则和实验网格以该配置为准。
 
-| 组别 | 方法 | 预算 | 初始化 |
-| --- | --- | --- | --- |
-| G1 | 图文匹配 BCE | 1%、5%、10%、20%、30%、100% | ALBEF 预训练权重 |
-| G2 | BCE + 自定义 Pair-USA | 同上 | 对应预算 G1 的最佳权重，再训练 1600 步 |
-| G3 | BCE + OT | 1%、5%、10%、20%、30% | 对应预算 G1 的最佳权重，再训练 1600 步 |
-| G4 | BCE + 自定义 Pair-USA + OT | 同 G3 | 对应预算 G1 的最佳权重，再训练 1600 步 |
+训练分为两个自适应阶段：先用 BCE 训练到验证平台期，再从同格的共同 BCE 终点派生主实验和消融分支。第二阶段继续保留 BCE，并加入各方法的模块损失；每项原始损失、加权损失和总损失分别记录。训练不再采用固定的“1600 步起点 + 1600 步续训”。
 
-每个阶段 1600 次成功更新；100% 预算无 U，G3/G4 不适用。G1/G2 只使用有标签 L，G3/G4 使用 U 的 blind caption，但不读取 U 的隐藏匹配来源标签。这里的 BCE 是**图文对匹配二分类**，不是六病害多标签 BCE。G1 比其他三组少一个训练阶段，因此四组并非完全等算力。负例是固定的随机异病例完整 caption 错配，未经逐图语义审核，可能存在假负例。
+| 实验范围 | 作物 | 标注预算 |
+| --- | --- | --- |
+| 主实验 | 苹果、木薯、水稻、香蕉 | 1%、5%、10%、20%、30% |
+| 消融实验 | 同上 | 1%、5%、10%、20%、30%、100% |
 
-## 仓库内容
+100% 预算没有无标签池 U，仅使用 BCE 和 BCE + Pair-USA；不生成 OT 或其他半监督方法的占位结果。图文负例采用固定异病例完整 caption 错配，属于可能包含假负例的弱负例。
 
-- [`experiments/apple_itm_pairusa_random_v2/code`](experiments/apple_itm_pairusa_random_v2/code)：原 A/B 训练器、图文匹配模型、随机负例构造与工程核验。历史 B 为独立初始化的 Pair-USA 学生，不计入上述 G1–G4 主表；其每预算教师被 G2/G4 复用。
-- [`experiments/apple_itm_pairusa_warmstart_v1/code`](experiments/apple_itm_pairusa_warmstart_v1/code)：G2 的 A-best 续训逻辑。
-- [`experiments/apple_itm_usa_ot_ablation_v1/code`](experiments/apple_itm_usa_ot_ablation_v1/code)：G3/G4 的 OT 目标、训练与数值恢复。最先完成的 5%/20% 四组使用早期求解器，其源码单独归档在 `archive/pre_recovery_solver/`；后续组使用当前求解器。不能把两者称作同一代码指纹。
-- [`experiments/apple_itm_g1_g4_multiseed_v1`](experiments/apple_itm_g1_g4_multiseed_v1)：新增 `20260826`、`20260827` 的代码与计划。**这两个种子尚未运行，也未做真实 GPU 工程核验。**
-- [`src/albef_ssl`](src/albef_ssl)：本实验使用的 ALBEF/LoRA 模型实现及必要的上游 ViT、xBERT 文件。上游许可见 [`third_party/ALBEF_LICENSE.txt`](third_party/ALBEF_LICENSE.txt)。
-- [`tests/test_ot_public.py`](tests/test_ot_public.py)：不依赖数据与历史失败张量的 CPU 数值检查。原内部 OT 测试依赖未公开的故障重放制品，因此不直接放入此代码仓库。
+## BCE 起点与消融分支
 
-## 复现边界
+第一阶段从公共 ALBEF 初始化出发，只训练图文匹配 BCE。达到验证平台期后冻结终点 student、EMA、优化器、scaler 和随机状态，作为所有同格分支的共同父检查点。采用平台期终点，不采用历史 best checkpoint。
 
-这是**本机历史实现的源码归档**，不是跨机器开箱即跑的软件包。历史 Python 源码和计划保留了原运行环境的绝对路径；配置、输入与断点的来源哈希相互绑定。擅自替换路径、修改旧配置或复写断点会破坏旧实验的来源核验。另见 [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) 和 [`docs/DATA.md`](docs/DATA.md)。
+| 组别 / 用途 | 第二阶段损失 | 初始化与训练规则 |
+| --- | --- | --- |
+| 平台期参照 | 不追加训练 | 冻结的 BCE 终点 EMA |
+| G1：BCE 续训 | BCE | 从共同父检查点继续，自适应停止 |
+| G2：Pair-USA | BCE + Pair-USA | 同一父检查点，自适应停止 |
+| G3：OT | BCE + OT | 同一父检查点，自适应停止 |
+| G4：完整方法 | BCE + Pair-USA + OT | 同一父检查点，自适应停止，不继承 G3 |
+| 等追加步数对照 | BCE | 从同一父检查点训练到对应模块的实际追加步数 |
 
-基础 ALBEF 权重、BERT tokenizer 和冻结的输入表需由使用者在获得相应权利后另行准备，并校验哈希。仓库不提供凭空再生成旧实验数值的承诺。历史归档没有独立Test结果；v3/v4虽提供独立Test评价接口，但不附实际Test数据、真实结果或自动部署。
+各分支继承相同的父 student / EMA 与随机状态，并统一重建阶段优化器、scaler 和学习率日程。USA 与完整方法复用同格的 L-only 关系教师；OT 使用 U 的图文视图，不读取 U 的隐藏匹配标签。
 
-主实验历史训练种子为 `20260825`。新增两种子仅改变训练随机流；固定的数据构造和负例配对仍来自 `20260825`。固定 seed 不代表跨硬件逐位一致。
+## 半监督主实验
 
-无数据的快速检查：`python -m unittest discover -s tests -p 'test_*.py'`。这不能替代真实数据、GPU 初始化和断点恢复核验。
+主表包含 BCE 续训、以下五种半监督方法，以及 BCE + Pair-USA + OT。所有方法均从共同的 BCE 平台期父检查点出发，第二阶段保留有标签 BCE。
+
+| 方法 | 附加模块 |
+| --- | --- |
+| Mean Teacher | EMA 教师一致性损失 |
+| FixMatch | 置信度筛选的硬伪标签一致性损失 |
+| SoftMatch | 自适应软权重伪标签损失 |
+| SimMatch | 语义一致性与实例一致性损失 |
+| FreeMatch | 自适应阈值伪标签损失与 SAF 正则项 |
+
+## 自适应停止与主要参数
+
+| 配置项 | 当前设置 |
+| --- | --- |
+| 验证间隔 | 每 100 次成功更新；固定 400 锚图 / 800 图文对 |
+| 平台期监控 | EMA Validation Paired Accuracy |
+| 改善门槛 / 耐心 | 0.005；连续 8 次验证无足够改善 |
+| BCE 阶段 | 最少 800 步；安全上限 6000 步 |
+| 模块阶段共同最少步数 | `max(1600, ceil(L锚图数 / 16) + 100)` |
+| 模块阶段安全上限 | 4000 步；覆盖统一的内部预热约束 |
+| 学习率 | 每阶段 80 步预热，随后余弦衰减；最低倍率 0.1 |
+| LoRA / head 学习率 | `1e-4` / `2e-4` |
+| 图像大小 / EMA 衰减 | 384 / 0.999 |
+| 逻辑批量 | L：16 正锚图 / 32 配对；无标签分支 U：32 配对 |
+| 物理微批 | 16 对；同一步 OOM 时可降至 8 或 4，逻辑批量不变 |
+| USA / OT 权重 | 模块阶段第 101–200 步升至 0.1 |
+
+触及安全上限会单独记录，不将其视为验证平台期；BCE 未满足平台期条件时，不自动进入模块阶段。AUROC 和 Validation-best 仅用于诊断，不替代终点评价模型，也不重置平台期耐心。
+
+## 区分继续训练与模块收益
+
+每个模块停止后，先用 Validation 停止回执确定其追加步数，再构造对应的等追加步数 BCE 对照。对照采用相同父状态、阶段学习率、采样和增强，不能用 Test 表现决定匹配步数。
+
+| 对比 | 解释 |
+| --- | --- |
+| BCE 续训 − 平台期参照 | 继续训练的收益 |
+| 模块分支 − 对应等追加步数 BCE | 相同追加学生更新数下的模块增量 |
+| 模块分支 − 自适应 BCE 续训 | 完整自适应训练策略的差异 |
+| 模块分支 − 平台期参照 | 总体增益，包含继续训练因素 |
+
+等追加学生步数不等于等总算力。父阶段、教师、记忆库、U 前反向、恢复与验证等成本分别计账；时间比较需要同硬件、同环境和无并行争用。
+
+主评价使用终点 EMA 的独立 Test 指标。模型、停止回执和 Validation 阈值先冻结，再进行一次性 Test 访问；同时报告锁定阈值与固定 0.5，Test 不用于选模型、阈值或训练步数。
+
+## 代码与配置入口
+
+| 入口 | 用途 |
+| --- | --- |
+| [`experiments/pair_itm_plateau_v4/configs/protocol.public.json`](experiments/pair_itm_plateau_v4/configs/protocol.public.json) | 默认实验协议 |
+| [`src/plateau_benchmark`](src/plateau_benchmark) | 两阶段训练、平台期停止、共同父状态、匹配回执与汇总 |
+| [`src/fair_benchmark`](src/fair_benchmark) | 图文数据合同、模型后端、算法组件、教师与独立评价 |
+| [`src/albef_ssl`](src/albef_ssl) | ALBEF / LoRA 模型实现 |
+| [`tools/fair_benchmark.py`](tools/fair_benchmark.py) | 查询配置、查看代码指纹与汇总私有结果 |
+| [`tests`](tests) | CPU 与合成输入检查 |
+
+查询当前配置，不启动训练：
+
+```sh
+python -B tools/fair_benchmark.py plan --counts-only
+python -B tools/fair_benchmark.py plan --stage bce --dataset banana --budget 10 --counts-only
+python -B tools/fair_benchmark.py plan --stage adaptation --table main --method fixmatch --counts-only
+python -B tools/fair_benchmark.py plan --stage matched_bce --match-method ot --counts-only
+python -B tools/fair_benchmark.py source-fingerprint
+```
+
+训练 API、私有输入绑定及检查点恢复方式见 [v4 训练说明](experiments/pair_itm_plateau_v4/README.md)。基础模型、tokenizer、训练数据和合法独立 Test 由使用者另行准备，不能把旧 Validation 重命名为 Test。
+
+代码检查：
+
+```sh
+python -B -m unittest discover -s tests -p "test_*.py"
+```
+
+旧版实验实现与配置索引保留在 `experiments` 历史目录和 [`docs/THREE_HOST_EXPERIMENTS_20261004.md`](docs/THREE_HOST_EXPERIMENTS_20261004.md)，仅用于溯源。旧 v3 接口需显式指定 `--version v3`；不同协议的配置、断点和结果不混用。上游许可见 [`third_party`](third_party)。
