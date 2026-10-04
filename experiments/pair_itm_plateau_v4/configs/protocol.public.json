@@ -1,0 +1,220 @@
+{
+  "version": "pair_itm_plateau_v4",
+  "kind": "new_two_phase_adaptive_protocol_not_historical_registration",
+  "training_seeds": [
+    20260825,
+    20260826,
+    20260827
+  ],
+  "data_construction_seed": 20260825,
+  "datasets": [
+    "apple",
+    "cassava",
+    "rice",
+    "banana"
+  ],
+  "main_budgets_percent": [
+    1,
+    5,
+    10,
+    20,
+    30
+  ],
+  "ablation_budgets_percent": [
+    1,
+    5,
+    10,
+    20,
+    30,
+    100
+  ],
+  "main_methods": [
+    "bce",
+    "meanteacher",
+    "fixmatch",
+    "softmatch",
+    "simmatch",
+    "freematch",
+    "pairusa_ot"
+  ],
+  "ablation_methods": [
+    "bce",
+    "pairusa",
+    "ot",
+    "pairusa_ot"
+  ],
+  "model": {
+    "image_size": 384,
+    "vision_lora_layers": [
+      10,
+      11
+    ],
+    "vision_lora_rank": 4,
+    "vision_lora_alpha": 8,
+    "cross_lora_layers": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "cross_lora_rank": 8,
+    "cross_lora_alpha": 16,
+    "activation_checkpointing": true,
+    "initial_student_temperature": 0.07,
+    "initialization": "official_ALBEF4M_same_common_backbone_and_ITM_head_within_each_seed",
+    "method_specific_heads": "independent_seeded_initialization_and_reported_parameter_count"
+  },
+  "training": {
+    "max_successful_steps": 10000,
+    "logical_l_anchors": 16,
+    "logical_l_pairs": 32,
+    "logical_u_pairs": 32,
+    "physical_pairs": 16,
+    "oom_physical_fallback": [
+      8,
+      4
+    ],
+    "warmup_steps": 80,
+    "lr_schedule": "phase_local_warmup_cosine_with_nonzero_floor",
+    "lora_lr": 0.0001,
+    "head_lr": 0.0002,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1,
+    "ema_decay": 0.999,
+    "amp_initial_scale": 1024,
+    "lambda_u": 1,
+    "checkpoint_every": 50,
+    "max_same_step_attempts": 12
+  },
+  "ablation": {
+    "shared_bce_steps": "determined_by_BCE_validation_plateau",
+    "branch_steps": "adaptive_not_fixed",
+    "parent_selection": "terminal_EMA_full_state_at_BCE_plateau_never_best",
+    "reset_optimizer_at_branch": true,
+    "reset_lr_at_branch": true,
+    "s4_inherits_s3": false,
+    "auxiliary_start_in_branch": 100,
+    "auxiliary_ramp_end_in_branch": 200,
+    "pairusa_max_weight": 0.1,
+    "ot_max_weight": 0.1,
+    "pairusa_teacher_temperature": 1,
+    "teacher_max_epochs": 20,
+    "teacher_patience": 3,
+    "teacher_lr": 0.0002,
+    "teacher_training_inputs": "this_cell_L_pairs_only_never_U_labels_or_Test",
+    "teacher_reuse": "same_crop_budget_seed_and_teacher_fingerprint_for_USA_and_USA_OT",
+    "teacher_cost": "full_upstream_cost_reported_per_method_even_when_physically_reused",
+    "ot_epsilon": 0.1,
+    "ot_max_iterations": 100,
+    "ot_both_marginal_tolerance": 0.00001
+  },
+  "algorithms": {
+    "meanteacher": {
+      "unsup_warm_up": 0.4
+    },
+    "fixmatch": {
+      "p_cutoff": 0.95
+    },
+    "softmatch": {
+      "ema_p": 0.999,
+      "n_sigma": 2,
+      "variance_min": 1e-12
+    },
+    "simmatch": {
+      "T": 0.5,
+      "p_cutoff": 0.95,
+      "proj_size": 128,
+      "smoothing_alpha": 0.9,
+      "da_len": 256,
+      "in_loss_ratio": 1,
+      "projector_seed_offset": 505,
+      "projector_lr": 0.0002
+    },
+    "freematch": {
+      "ema_p": 0.999,
+      "ent_loss_ratio": 0.01,
+      "use_quantile": false,
+      "clip_thresh": false
+    }
+  },
+  "augmentation": {
+    "text": "complete_blind_caption_no_truncation_same_contract_for_all_methods",
+    "weak": "bicubic_resize384_and_seeded_horizontal_flip",
+    "strong": "same_flip_RandAugment_2ops_magnitude10_Cutout_0.125_no_crop",
+    "same_views_for_same_cell_seed_successful_step": true
+  },
+  "evaluation": {
+    "every_successful_steps": 100,
+    "validation_anchors": 400,
+    "validation_pairs": 800,
+    "primary_model": "ema",
+    "secondary_model": "student_validation_diagnostic_only",
+    "best_criterion": [
+      "paired_accuracy",
+      "auroc"
+    ],
+    "checkpoint_selection": "terminal_EMA_at_registered_phase_stop_or_matched_steps",
+    "validation_best_usage": "diagnostic_only_never_primary_or_test_checkpoint",
+    "threshold": "terminal_validation_max_macro_F1_locked_before_Test_plus_fixed_0.5",
+    "primary_split": "independent_test",
+    "test_inference": true,
+    "test_access": "after_phase_complete_and_group_training_targets_frozen_once_per_registered_run",
+    "test_count": "trusted_private_holdout_contract_not_validation_relabelled",
+    "test_never_selects_model_threshold_or_stopping": true
+  },
+  "tuning": {
+    "strategy": "frozen_settings_no_new_v4_hyperparameter_search",
+    "trials_per_method": 0,
+    "new_data_pilot_runs_per_method": 0,
+    "test_uses_for_tuning": 0,
+    "prior_experiments_exist": true,
+    "method_specific_defaults": "archived_USB_mathematics_plus_explicit_ITM_adaptations_not_a_claim_of_optimal_tuning",
+    "later_search_requires_new_protocol_and_equal_registered_trial_budget": true
+  },
+  "fairness": {
+    "fixed_equal_total_student_updates": false,
+    "equal_compute_claim": false,
+    "equal_unlabeled_pair_visits_claim": false,
+    "compute_comparison_requires_same_hardware_serial_execution": true,
+    "same_hyperparameter_search_budget_per_method": true,
+    "three_seed_mean_and_sample_std_complete_cells_only": true,
+    "historical_checkpoints_reusable": false,
+    "equal_total_student_updates_claim": false,
+    "phase_results_and_matched_controls_separate": true,
+    "parent_upstream_cost_charged_per_branch_even_if_physically_reused": true,
+    "shared_BCE_parent_required_for_all_main_and_ablation_methods": true
+  },
+  "publication": {
+    "launch_enabled": false,
+    "private_inputs_weights_teacher_and_real_admission_not_distributed": true,
+    "planned_configurations_not_completed_results": true
+  },
+  "phases": {
+    "bce": {
+      "min_successful_steps": 800,
+      "max_successful_steps": 6000,
+      "patience_validations": 8,
+      "min_delta": 0.005
+    },
+    "adaptation": {
+      "min_successful_steps": 1600,
+      "max_successful_steps": 4000,
+      "patience_validations": 8,
+      "min_delta": 0.005
+    },
+    "monitor": "EMA_validation_paired_accuracy",
+    "common_adaptation_grace": "max(1600,ceil(L_anchors/16)+100)_same_for_all_methods_in_cell",
+    "lr_warmup_steps": 80,
+    "lr_floor_multiplier": 0.1,
+    "restart": "same_fresh_optimizer_scaler_phase_LR_and_physical_batch_for_all_branches_including_BCE",
+    "parent_cap_does_not_trigger_modules": true,
+    "plateau_is_validation_evidence_not_proof_of_convergence": true,
+    "second_stage_supervised_BCE_retained": true,
+    "simmatch_bank": "deferred_until_first_adaptation_update_using_imported_parent_EMA",
+    "algorithm_warmup_clock": "phase_local_using_registered_4000_step_adaptation_cap",
+    "matched_BCE": "replay_same_parent_to_each_nonBCE_source_adaptive_stop_without_early_stopping",
+    "matching_selection": "source_Validation_stop_before_any_Test_not_chosen_by_Test"
+  }
+}
